@@ -29,3 +29,6 @@ ingress-nginx:
       ports:
         http: 80
         https: 443
+
+cert-manager:
+  installCRDs: true

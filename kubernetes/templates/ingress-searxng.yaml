@@ -2,7 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-searxng
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
+  tls:
+  - hosts:
+    - search.lsferreira.net
+    secretName: monodots-searxng-tls
+  ingressClassName: nginx
   rules:
   - host: search.lsferreira.net
     http:
