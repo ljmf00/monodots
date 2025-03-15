@@ -6,6 +6,10 @@ secrets-store-csi-driver:
   syncSecret:
     enabled: true
 
+csi-driver-smb:
+  controller:
+    replicas: 3
+
 ingress-nginx:
   namespaceOverride: "kube-system"
 
