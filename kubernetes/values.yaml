@@ -31,3 +31,33 @@ traefik-ingress:
 
       http3:
         enabled: true
+
+searxng:
+  redis:
+    enabled: true
+
+  controller:
+    replicas: 3
+
+  dnsPolicy: None
+  dnsConfig:
+    nameservers:
+      - 8.8.8.8
+      - 1.1.1.1
+    searches:
+      - cluster.local
+
+  searxng:
+    config:
+      use_default_settings: true
+
+      server:
+        image_proxy: true
+
+      general:
+        debug: true
+
+      search:
+        autocomplete: 'duckduckgo'
+  env:
+    BASE_URL: "http://search.lsferreira.net/"

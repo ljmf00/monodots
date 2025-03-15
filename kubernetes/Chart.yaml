@@ -7,6 +7,10 @@ dependencies:
     repository: https://traefik.github.io/charts
     version: 34.4.1
     alias: traefik-ingress
+  - name: searxng
+    repository: https://charts.searxng.org
+    version: 1.0.1
+    
 
 # A chart can be either an 'application' or a 'library' chart.
 #
