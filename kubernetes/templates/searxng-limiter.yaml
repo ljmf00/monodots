@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-searxng-limiter
+data:
+  limiter.toml: |
+    # This configuration file updates the default configuration file
+    # See https://github.com/searxng/searxng/blob/master/searx/limiter.toml
+    [botdetection.ip_limit]
+    link_token = true

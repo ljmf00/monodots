@@ -39,6 +39,14 @@ searxng:
   controller:
     replicas: 3
 
+  persistence:
+    limiter:
+      enabled: true
+      type: configMap
+      name: configmap-searxng-limiter
+      mountPath: /etc/searxng/limiter.toml
+      subPath: limiter.toml
+
   dnsPolicy: None
   dnsConfig:
     nameservers:
@@ -51,13 +59,31 @@ searxng:
     config:
       use_default_settings: true
 
+      ui:
+        static_use_hash: true
+        query_in_title: true
+        infinite_scroll: true
+
+        theme_args:
+          simple_style: dark
+
       server:
         image_proxy: true
+        limiter: true
 
       general:
         debug: false
 
       search:
-        autocomplete: 'duckduckgo'
+        autocomplete: "duckduckgo"
+        favicon_resolver: "duckduckgo"
+        default_lang: "pt-PT"
+
+        formats:
+          - html
+          - json
+          - csv
+          - rss
   env:
-    BASE_URL: "http://search.lsferreira.net/"
+    BASE_URL: "https://search.lsferreira.net/"
+    TZ: "Europe/Lisbon"
