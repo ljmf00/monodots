@@ -1,36 +1,36 @@
-traefik-ingress:
-  service:
-    enabled: true
-    type: ClusterIP
+# traefik-ingress:
+#   service:
+#     enabled: true
+#     type: ClusterIP
 
-  deployment:
-    enabled: true
-    replicas: 3
+#   deployment:
+#     enabled: true
+#     replicas: 3
 
-  ingressRoute:
-    dashboard:
-      enabled: true
+#   ingressRoute:
+#     dashboard:
+#       enabled: true
 
-  ports:
-    traefik:
-      port: 8888
-    web:
-      port: 8080
+#   ports:
+#     traefik:
+#       port: 8888
+#     web:
+#       port: 8080
 
-      redirections:
-        entryPoint:
-          to: websecure
-          scheme: https
-          permanent: true
+#       redirections:
+#         entryPoint:
+#           to: websecure
+#           scheme: https
+#           permanent: true
 
-    websecure:
-      port: 8443
+#     websecure:
+#       port: 8443
 
-      tls:
-        enabled: true
+#       tls:
+#         enabled: true
 
-      http3:
-        enabled: true
+#       http3:
+#         enabled: true
 
 searxng:
   redis:

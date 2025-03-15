@@ -3,10 +3,10 @@ name: monodots
 description: A Helm chart for Kubernetes
 
 dependencies:
-  - name: traefik
-    repository: https://traefik.github.io/charts
-    version: 34.4.1
-    alias: traefik-ingress
+  # - name: traefik
+  #   repository: https://traefik.github.io/charts
+  #   version: 34.4.1
+  #   alias: traefik-ingress
   - name: searxng
     repository: https://charts.searxng.org
     version: 1.0.1
