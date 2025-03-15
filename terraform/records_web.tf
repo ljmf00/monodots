@@ -93,7 +93,7 @@ resource "cloudflare_record" "search_lsferreira" {
   name = "search.lsferreira.net"
   value = "k8s._.lsferreira.net"
   type = "CNAME"
-  proxied = false
+  proxied = true
 
   comment = "terraform"
 }
