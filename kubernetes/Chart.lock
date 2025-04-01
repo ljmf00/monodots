@@ -1,9 +1,9 @@
 dependencies:
-- name: traefik
-  repository: https://traefik.github.io/charts
-  version: 34.4.1
 - name: searxng
   repository: https://charts.searxng.org
   version: 1.0.1
-digest: sha256:2784377a68d45b3855308b1b06f933f6ec223c19bdbc89b46a493635527dd9e6
-generated: "2025-03-14T23:38:32.753903304Z"
+- name: wireguard
+  repository: https://bryopsida.github.io/wireguard-chart
+  version: 0.29.0
+digest: sha256:0999333da6fe003102b43c074501178a19638e075ab4ed6cc5dfdec4b6121b85
+generated: "2025-03-15T23:54:55.353083722Z"

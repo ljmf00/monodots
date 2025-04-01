@@ -32,6 +32,21 @@
 #       http3:
 #         enabled: true
 
+wireguard:
+  autoscaling:
+    minReplicas: 1
+    maxReplicas: 2
+  daemonSet: true
+  useHostPort: true
+  secretName: monodots-wg-privkey
+  wireguard:
+    allowWan: false
+    clients:
+    - AllowedIPs: "10.34.0.2/32"
+      PublicKey: "IDv2UdXfzLjOeW/JL7jV373Cr0gyVYdF4mjo4vo4bX0="
+    serverAddress: "10.34.0.1/24"
+    serverCidr: "10.34.0.0/24"
+
 searxng:
   redis:
     enabled: true

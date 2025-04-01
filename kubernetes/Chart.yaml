@@ -10,7 +10,9 @@ dependencies:
   - name: searxng
     repository: https://charts.searxng.org
     version: 1.0.1
-    
+  - name: wireguard
+    repository: https://bryopsida.github.io/wireguard-chart
+    version: 0.29.0
 
 # A chart can be either an 'application' or a 'library' chart.
 #
