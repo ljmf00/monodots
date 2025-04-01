@@ -1,7 +1,7 @@
 resource "cloudflare_record" "root_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "lsferreira.net"
-  value = "ft-s-lu-04._.lsferreira.net"
+  value = "ft-s-lu-04.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -11,7 +11,7 @@ resource "cloudflare_record" "root_lsferreira" {
 resource "cloudflare_record" "www_root_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "www.lsferreira.net"
-  value = "ft-s-lu-04._.lsferreira.net"
+  value = "ft-s-lu-04.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -21,7 +21,7 @@ resource "cloudflare_record" "www_root_lsferreira" {
 resource "cloudflare_record" "s_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "s.lsferreira.net"
-  value = "nc-anx04-1._.lsferreira.net"
+  value = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -31,7 +31,7 @@ resource "cloudflare_record" "s_lsferreira" {
 resource "cloudflare_record" "rss_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "rss.lsferreira.net"
-  value = "ft-s-lu-04._.lsferreira.net"
+  value = "ft-s-lu-04.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -41,7 +41,7 @@ resource "cloudflare_record" "rss_lsferreira" {
 resource "cloudflare_record" "social_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "social.lsferreira.net"
-  value = "ft-s-lu-04._.lsferreira.net"
+  value = "ft-s-lu-04.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -51,7 +51,7 @@ resource "cloudflare_record" "social_lsferreira" {
 resource "cloudflare_record" "feed_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "feed.lsferreira.net"
-  value = "ft-s-lu-04._.lsferreira.net"
+  value = "ft-s-lu-04.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -61,7 +61,7 @@ resource "cloudflare_record" "feed_lsferreira" {
 resource "cloudflare_record" "inventory_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "inventory.lsferreira.net"
-  value = "ft-s-lu-04._.lsferreira.net"
+  value = "ft-s-lu-04.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -71,7 +71,7 @@ resource "cloudflare_record" "inventory_lsferreira" {
 resource "cloudflare_record" "metrics_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "metrics.lsferreira.net"
-  value = "nc-anx04-1._.lsferreira.net"
+  value = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -81,7 +81,7 @@ resource "cloudflare_record" "metrics_lsferreira" {
 resource "cloudflare_record" "my_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "my.lsferreira.net"
-  value = "nc-anx04-1._.lsferreira.net"
+  value = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -91,7 +91,7 @@ resource "cloudflare_record" "my_lsferreira" {
 resource "cloudflare_record" "search_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "search.lsferreira.net"
-  value = "k8s._.lsferreira.net"
+  value = "k8s.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
