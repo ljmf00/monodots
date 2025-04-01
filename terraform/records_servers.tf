@@ -87,3 +87,13 @@ resource "cloudflare_record" "k8s_dh_p_de_frkt_02_a_lsferreira" {
 
   comment = "terraform"
 }
+
+resource "cloudflare_record" "master_k8s_dh_p_de_frkt_01_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "master.k8s._.lsferreira.net"
+  value = "92.112.125.156"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
