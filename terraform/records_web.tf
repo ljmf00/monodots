@@ -108,6 +108,16 @@ resource "cloudflare_record" "status_lsferreira" {
   comment = "terraform"
 }
 
+resource "cloudflare_record" "home_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "home.lsferreira.net   "
+  value = "2.80.252.193"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
 resource "cloudflare_record" "epg_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "epg.lsferreira.net"
