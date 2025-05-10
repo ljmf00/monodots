@@ -213,7 +213,7 @@
 
   programs.lsd = {
     enable = true;
-    enableAliases = true;
+    enableBashIntegration = true;
 
     settings = {
       date = "relative";

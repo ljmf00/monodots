@@ -12,7 +12,7 @@ in with lib;
     extraPackages = with pkgs; [
       vaapiVdpau
       libvdpau-va-gl
-      mesa.drivers
+      mesa
     ];
   };
 

@@ -24,7 +24,7 @@ in with lib;
     enableExtraSocket     = true;
     enableSshSupport      = true;
 
-    pinentryPackage = mkGenericDefault pkgs.pinentry-curses;
+    pinentry.package = mkGenericDefault pkgs.pinentry-curses;
   };
 
   # Prevent clobbering SSH_AUTH_SOCK

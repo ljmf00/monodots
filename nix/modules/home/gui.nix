@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ...}:
   with lib;
 {
-  services.gpg-agent.pinentryPackage = mkDefault pkgs.pinentry-gnome3;
+  services.gpg-agent.pinentry.package = mkDefault pkgs.pinentry-gnome3;
 
   programs.librewolf = {
     enable = true;
