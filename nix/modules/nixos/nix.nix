@@ -11,6 +11,8 @@
     settings.keep-outputs = true;
     settings.keep-derivations = true;
 
+    optimise.automatic = true;
+
     gc = {
       automatic = true;
       dates = "weekly";
