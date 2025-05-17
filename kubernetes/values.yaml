@@ -48,11 +48,8 @@ wireguard:
     serverCidr: "10.34.0.0/24"
 
 searxng:
-  redis:
-    enabled: true
-
   controller:
-    replicas: 3
+    replicas: 5
 
   persistence:
     limiter:
@@ -86,19 +83,44 @@ searxng:
         image_proxy: true
         limiter: true
 
+        http_protocol_version: "1.1"
+
       general:
         debug: false
 
+      preferences:
+        lock:
+          - autocomplete
+          - favicon
+          - doi_resolver
+
+      outgoing:
+        request_timeout: 5.0
+        max_request_timeout: 15.0
+
+        pool_connections: 512
+        pool_maxsize: 32
+
       search:
-        autocomplete: "duckduckgo"
+        autocomplete: "google"
         favicon_resolver: "duckduckgo"
         default_lang: "pt-PT"
 
         formats:
           - html
-          - json
-          - csv
-          - rss
+          # - json
+          # - csv
+          # - rss
+      
+      plugins:
+        searx.plugins.tor_check.SXNGPlugin:
+          active: true
+        searx.plugins.tracker_url_remover.SXNGPlugin:
+          active: true
+
   env:
     BASE_URL: "https://search.lsferreira.net/"
+    AUTOCOMPLETE: "true"
+    UWSGI_WORKERS: 8
+    UWSGI_THREADS: 4
     TZ: "Europe/Lisbon"
