@@ -77,14 +77,6 @@ searxng:
       mountPath: /etc/searxng/limiter.toml
       subPath: limiter.toml
 
-  # dnsPolicy: None
-  # dnsConfig:
-  #   nameservers:
-  #     - 8.8.8.8
-  #     - 1.1.1.1
-  #   searches:
-  #     - cluster.local
-
   searxng:
     config:
       use_default_settings: true
