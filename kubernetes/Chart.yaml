@@ -7,6 +7,10 @@ dependencies:
   #   repository: https://traefik.github.io/charts
   #   version: 34.4.1
   #   alias: traefik-ingress
+  - name: redis
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 18.5.0
+    alias: searxng-redis
   - name: searxng
     repository: https://charts.searxng.org
     version: 1.0.1

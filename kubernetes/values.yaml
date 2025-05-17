@@ -47,7 +47,25 @@ wireguard:
     serverAddress: "10.34.0.1/24"
     serverCidr: "10.34.0.0/24"
 
+searxng-redis:
+  fullnameOverride: searxng-redis
+  architecture: replication
+  replica:
+    replicaCount: 3
+  sentinel:
+    enabled: true
+  commonLabels:
+    role: searxng-redis-server
+  
+  # no need to for persistence for cache nodes
+  master:
+    persistence:
+      enabled: false
+
 searxng:
+  podLabels:
+      role: searxng-redis-client
+  
   controller:
     replicas: 5
 
@@ -59,13 +77,13 @@ searxng:
       mountPath: /etc/searxng/limiter.toml
       subPath: limiter.toml
 
-  dnsPolicy: None
-  dnsConfig:
-    nameservers:
-      - 8.8.8.8
-      - 1.1.1.1
-    searches:
-      - cluster.local
+  # dnsPolicy: None
+  # dnsConfig:
+  #   nameservers:
+  #     - 8.8.8.8
+  #     - 1.1.1.1
+  #   searches:
+  #     - cluster.local
 
   searxng:
     config:
@@ -84,6 +102,9 @@ searxng:
         limiter: true
 
         http_protocol_version: "1.1"
+      
+      redis:
+        url: redis://@searxng-redis-master:6379/0
 
       general:
         debug: false
