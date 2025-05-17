@@ -6,6 +6,28 @@ secrets-store-csi-driver:
   syncSecret:
     enabled: true
 
+metrics-server:
+  rbac:
+    create: true
+    pspEnabled: true
+
+  args:
+    - --kubelet-insecure-tls
+
+  apiService:
+    create: true
+    # Turn to false when https://github.com/kubernetes-sigs/metrics-server/issues/1664 is resolved
+    insecureSkipTLSVerify: true
+
+  tls:
+    type: "cert-manager"
+    certManager:
+      addInjectorAnnotations: true
+    helm:
+      lookup: false
+    existingSecret:
+      lookup: false
+
 ingress-nginx:
   namespaceOverride: "kube-system"
 
