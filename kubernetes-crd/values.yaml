@@ -1,3 +1,9 @@
 cert-manager:
   enabled: true
   installCRDs: true
+
+kube-prometheus-stack:
+  crds:
+    enabled: true
+    upgradeJob:
+      enabled: true

@@ -11,8 +11,11 @@ dependencies:
 - name: ingress-nginx
   repository: https://kubernetes.github.io/ingress-nginx
   version: 4.12.0
+- name: prometheus-adapter
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 4.14.1
 - name: metrics-server
   repository: https://kubernetes-sigs.github.io/metrics-server
   version: 3.12.2
-digest: sha256:a315d6a469b164a8175b1c5afaf88f2c68be454094ba85969d7475535b78e6cd
-generated: "2025-05-17T18:31:23.694227043+01:00"
+digest: sha256:33ae57af635c86cbf97055555210037679347b82561923669850d6bc3b3dd1eb
+generated: "2025-05-17T21:22:33.051127435+01:00"
