@@ -5,6 +5,7 @@
     ./graphical.nix
 
     ./../../modules/nixos/packages/essentials.nix
+    ./../../modules/nixos/packages/ipfs.nix
 
     ./../../modules/nixos/monitoring.nix
     ./../../modules/nixos/proxy.nix

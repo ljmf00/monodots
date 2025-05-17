@@ -3,6 +3,8 @@ let
   mkGenericDefault = lib.mkOverride 1100;
 in with lib;
 {
+  services.flatpak.enable = true;
+  
   environment.systemPackages = with pkgs;
     [
       busybox
