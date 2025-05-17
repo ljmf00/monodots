@@ -10,6 +10,7 @@
     ];
     settings.keep-outputs = true;
     settings.keep-derivations = true;
+    settings.download-buffer-size = 67108864 * 2;
 
     optimise.automatic = true;
 
