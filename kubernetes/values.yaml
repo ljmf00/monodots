@@ -49,13 +49,9 @@ wireguard:
 
 searxng-redis:
   fullnameOverride: searxng-redis
-  architecture: replication
-  replica:
-    replicaCount: 3
-  sentinel:
-    enabled: true
-  commonLabels:
-    role: searxng-redis-server
+  architecture: standalone
+  auth:
+    enabled: false
   
   # no need to for persistence for cache nodes
   master:
@@ -63,11 +59,9 @@ searxng-redis:
       enabled: false
 
 searxng:
-  podLabels:
-      role: searxng-redis-client
-  
   controller:
-    replicas: 5
+    # TODO: increase number of replicas when more nodes are available
+    replicas: 3
 
   persistence:
     limiter:
@@ -134,6 +128,8 @@ searxng:
   env:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
-    UWSGI_WORKERS: 8
-    UWSGI_THREADS: 4
     TZ: "Europe/Lisbon"
+
+    # TODO: increase workers/threads when more nodes are available
+    UWSGI_WORKERS: 2
+    UWSGI_THREADS: 2
