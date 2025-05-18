@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euxo pipefail
+
 helm upgrade --install --namespace kube-system --create-namespace monodots-bootstrap kubernetes-bootstrap
 
 # Apply CRDs first
