@@ -17,5 +17,8 @@ dependencies:
 - name: metrics-server
   repository: https://kubernetes-sigs.github.io/metrics-server
   version: 3.12.2
-digest: sha256:33ae57af635c86cbf97055555210037679347b82561923669850d6bc3b3dd1eb
-generated: "2025-05-17T21:22:33.051127435+01:00"
+- name: descheduler
+  repository: https://kubernetes-sigs.github.io/descheduler
+  version: 0.33.0
+digest: sha256:f9a774c8b9eab6bbda45ee8d6498343b5918b5e211f68f2620e514ecdd3d2fe9
+generated: "2025-05-18T01:09:16.997645101+01:00"
