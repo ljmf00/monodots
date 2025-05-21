@@ -7,4 +7,9 @@ data:
     # This configuration file updates the default configuration file
     # See https://github.com/searxng/searxng/blob/master/searx/limiter.toml
     [botdetection.ip_limit]
+    # activate link_token method in the ip_limit method
     link_token = true
+    
+    # To get unlimited access in a local network, by default link-local addresses
+    # (networks) are not monitored by the ip_limit
+    filter_link_local = true
