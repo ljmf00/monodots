@@ -69,3 +69,12 @@ resource "cloudflare_record" "txt_workspace_verification_mail" {
 
   comment = "terraform"
 }
+
+resource "cloudflare_record" "txt_workspace_verification_fwd_mail" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "workspace-verification.fwd.mail.lsferreira.net"
+  value = "efac3cf7-bddb-4d94-a3ba-9ac6e2f76839"
+  type = "TXT"
+
+  comment = "terraform"
+}
