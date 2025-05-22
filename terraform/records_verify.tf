@@ -55,7 +55,7 @@ resource "cloudflare_record" "txt_ovhcontrol_status_verify" {
 resource "cloudflare_record" "txt_workspace_verification" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "workspace-verification.lsferreira.net"
-  value = "9f0caa07-dfb0-48df-82b8-557d01f843c3"
+  value = "efac3cf7-bddb-4d94-a3ba-9ac6e2f76839"
   type = "TXT"
 
   comment = "terraform"
@@ -64,7 +64,7 @@ resource "cloudflare_record" "txt_workspace_verification" {
 resource "cloudflare_record" "txt_workspace_verification_mail" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "workspace-verification.mail.lsferreira.net"
-  value = "9f0caa07-dfb0-48df-82b8-557d01f843c3"
+  value = "efac3cf7-bddb-4d94-a3ba-9ac6e2f76839"
   type = "TXT"
 
   comment = "terraform"
