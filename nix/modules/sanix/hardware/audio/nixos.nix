@@ -4,6 +4,13 @@
   config = mkIf (builtins.elem "audio" config.sanix.hardware) {
     xdg.sounds.enable = true;
 
+    environment.etc."asound.conf".text = ''
+      cards.USB-Audio.pcm.iec958_device."Behringer UV1" 999
+      cards.USB-Audio.pcm.iec958_device."UV1" 999
+    '';
+
+    hardware.alsa.enablePersistence = true;
+
     # disable pulseaudio
     services.pulseaudio.enable = false;
 
