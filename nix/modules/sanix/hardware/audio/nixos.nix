@@ -6,13 +6,17 @@
 
     # disable pulseaudio
     services.pulseaudio.enable = false;
-    environment.systemPackages = with pkgs; [
-      pulseaudioFull
-    ];
+
+    services.pulseaudio.support32Bit = true;
+    services.pulseaudio.package = pkgs.pulseaudioFull;
+
+    # explicit compile pkgs with pulseaudio support
+    nixpkgs.config.pulseaudio = true;
 
     # enable pipewire
     services.pipewire = {
       enable = true;
+
       alsa.enable = true;
       alsa.support32Bit = true;
 
