@@ -132,6 +132,7 @@
       nixosConfigurations.default = mkSystem inputs.nixpkgs-nixos "${defaultSystem}" "${defaultHostname}" "${defaultUsername}";
 
       nixosConfigurations.thinker = mkSystem inputs.nixpkgs-nixos "x86_64-linux" "thinker" "luis";
+      nixosConfigurations.sun = mkSystem inputs.nixpkgs-nixos "x86_64-linux" "sun" "luis";
 
       homeConfigurations."${defaultUsername}" = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
