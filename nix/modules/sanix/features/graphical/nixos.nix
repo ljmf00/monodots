@@ -39,6 +39,10 @@
       };
     };
 
+    # fix issue with crash on login attempts
+    systemd.services."getty@tty1".enable = false;
+    systemd.services."autovt@tty1".enable = false;
+
     # Enable interfacing X11 with Wayland
     programs.xwayland.enable = true;
 
