@@ -4,7 +4,7 @@ let
 in with lib;
 {
   services.kubo = {
-    enable = true;
+    enable = false;
     enableGC = true;
     localDiscovery = true;
     settings = {
