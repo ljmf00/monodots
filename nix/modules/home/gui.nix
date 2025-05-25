@@ -5,9 +5,7 @@
 
   programs.librewolf = {
     enable = true;
-    package = with pkgs; (librewolf.override {
-      nativeMessagingHosts = [ libsForQt5.plasma-browser-integration ];
-    });
+    package = pkgs.librewolf;
 
     # Enable WebGL, cookies and history
     settings = {
@@ -22,6 +20,18 @@
       "privacy.globalprivacycontrol.enabled" = true;
       "network.cookie.lifetimePolicy" = 0;
       "widget.use-xdg-desktop-portal.file-picker" = 1;
+    };
+  };
+
+  # configure default browser
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "librewolf.desktop";
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+      "x-scheme-handler/about" = "librewolf.desktop";
+      "x-scheme-handler/unknown" = "librewolf.desktop";
     };
   };
 

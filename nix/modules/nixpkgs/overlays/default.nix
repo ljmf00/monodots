@@ -9,10 +9,14 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-        OVMF = prev.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        };
+      OVMF = prev.OVMF.override {
+        secureBoot = true;
+        tpmSupport = true;
+      };
+
+      librewolf = (prev.librewolf.override {
+        nativeMessagingHosts = [ final.gnome-browser-connector ];
+      });
     })
   ];
 }

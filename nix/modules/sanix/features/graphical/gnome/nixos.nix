@@ -13,6 +13,7 @@
         gnome-remote-desktop.enable = true;
         gnome-settings-daemon.enable = true;
         gnome-user-share.enable = true;
+        gnome-browser-connector.enable = true;
 
         rygel.enable = true;
         sushi.enable = true;
