@@ -98,6 +98,16 @@ resource "cloudflare_record" "search_lsferreira" {
   comment = "terraform"
 }
 
+resource "cloudflare_record" "bridge_rss_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "bridge.rss.lsferreira.net"
+  value = "k8s.internal.lsferreira.net"
+  type = "CNAME"
+  proxied = false
+
+  comment = "terraform"
+}
+
 resource "cloudflare_record" "status_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "status.lsferreira.net"
