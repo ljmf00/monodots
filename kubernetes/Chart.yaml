@@ -20,6 +20,9 @@ dependencies:
   - name: emqx-enterprise
     repository: https://repos.emqx.io/charts
     version: 5.10.0
+  - name: rss-bridge
+    repository: oci://tccr.io/truecharts
+    version: 13.1.0
 
 # A chart can be either an 'application' or a 'library' chart.
 #

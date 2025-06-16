@@ -142,3 +142,13 @@ searxng:
     # TODO: increase workers/threads when more nodes are available
     UWSGI_WORKERS: 2
     UWSGI_THREADS: 2
+
+rss-bridge:
+  service:
+    main:
+      ports:
+        main:
+          port: 10225
+  persistence:
+    config:
+      enabled: false

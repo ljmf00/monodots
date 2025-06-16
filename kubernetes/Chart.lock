@@ -11,5 +11,8 @@ dependencies:
 - name: emqx-enterprise
   repository: https://repos.emqx.io/charts
   version: 5.10.0
-digest: sha256:1f4d5f556fd593ad95b45011b160a4a5c27b6996eb80b1016f5522f72e96eb65
-generated: "2025-06-16T00:54:48.627617037+01:00"
+- name: rss-bridge
+  repository: oci://tccr.io/truecharts
+  version: 13.1.0
+digest: sha256:de9265ae95dc4e47d936f8742d27b34ae7b35a4b272a7433765d464013c03cf6
+generated: "2025-06-16T09:08:15.564560119+01:00"
