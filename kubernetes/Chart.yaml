@@ -23,6 +23,9 @@ dependencies:
   - name: rss-bridge
     repository: oci://tccr.io/truecharts
     version: 13.1.0
+  - name: codeproject-ai-server
+    repository: oci://tccr.io/truecharts
+    version: 4.5.1
 
 # A chart can be either an 'application' or a 'library' chart.
 #

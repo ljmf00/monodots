@@ -14,5 +14,8 @@ dependencies:
 - name: rss-bridge
   repository: oci://tccr.io/truecharts
   version: 13.1.0
-digest: sha256:de9265ae95dc4e47d936f8742d27b34ae7b35a4b272a7433765d464013c03cf6
-generated: "2025-06-16T09:08:15.564560119+01:00"
+- name: codeproject-ai-server
+  repository: oci://tccr.io/truecharts
+  version: 4.5.1
+digest: sha256:edddd6142b2c0388d1ce9b49a73db579c08b2f7323b1ddd2f5be8d2d11de8881
+generated: "2025-06-16T09:26:09.762293585+01:00"

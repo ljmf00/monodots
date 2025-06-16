@@ -149,6 +149,11 @@ rss-bridge:
       ports:
         main:
           port: 10225
-  persistence:
-    config:
-      enabled: false
+
+codeproject-ai-server:
+  service:
+    main:
+      ports:
+        main:
+          port: 32168
+          targetPort: 32168
