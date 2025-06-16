@@ -8,5 +8,8 @@ dependencies:
 - name: wireguard
   repository: https://bryopsida.github.io/wireguard-chart
   version: 0.29.0
-digest: sha256:6cffd8a83b6b6d403ad84ed49dbd292b429bf7da62f2468cc7e4b5315c6b4e39
-generated: "2025-05-17T17:35:12.293439512+01:00"
+- name: emqx-enterprise
+  repository: https://repos.emqx.io/charts
+  version: 5.10.0
+digest: sha256:1f4d5f556fd593ad95b45011b160a4a5c27b6996eb80b1016f5522f72e96eb65
+generated: "2025-06-16T00:54:48.627617037+01:00"

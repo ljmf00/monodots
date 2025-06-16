@@ -17,6 +17,9 @@ dependencies:
   - name: wireguard
     repository: https://bryopsida.github.io/wireguard-chart
     version: 0.29.0
+  - name: emqx-enterprise
+    repository: https://repos.emqx.io/charts
+    version: 5.10.0
 
 # A chart can be either an 'application' or a 'library' chart.
 #
