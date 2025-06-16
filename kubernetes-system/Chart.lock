@@ -20,5 +20,8 @@ dependencies:
 - name: descheduler
   repository: https://kubernetes-sigs.github.io/descheduler
   version: 0.33.0
-digest: sha256:f9a774c8b9eab6bbda45ee8d6498343b5918b5e211f68f2620e514ecdd3d2fe9
-generated: "2025-05-18T01:09:16.997645101+01:00"
+- name: konnectivity
+  repository: https://linode.github.io/konnectivity
+  version: v0.1.0
+digest: sha256:34839e599260a5738434b57c9592f9c06d4111006cffee7a124937f140317b77
+generated: "2025-06-16T00:58:34.945670583+01:00"

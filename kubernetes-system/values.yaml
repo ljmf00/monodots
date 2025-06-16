@@ -73,3 +73,6 @@ ingress-nginx:
       ports:
         http: 80
         https: 443
+
+konnectivity:
+  proxyServerHost: master.k8s.internal.lsferreira.net
