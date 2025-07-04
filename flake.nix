@@ -8,6 +8,12 @@
     nixpkgs-stable.url       = "github:nixos/nixpkgs/release-23.05";
     nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
 
+    # android building
+    robotnix = {
+      url = "github:nix-community/robotnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # secrets manager
     agenix.url = "github:ryantm/agenix";
 
@@ -133,6 +139,26 @@
 
       nixosConfigurations.thinker = mkSystem inputs.nixpkgs-nixos "x86_64-linux" "thinker" "luis";
       nixosConfigurations.sun = mkSystem inputs.nixpkgs-nixos "x86_64-linux" "sun" "luis";
+
+      robotnixConfigurations.oneplus11 = inputs.robotnix.lib.robotnixSystem ({ config, pkgs, ... }: {
+        # These two are required options
+        device = "salami";
+        flavor = "lineageos";
+
+        buildDateTime = 1751301288;
+
+        # Build with ccache
+        ccache.enable = true;
+
+        apps.fdroid.enable = true;
+        apps.seedvault.enable = true;
+        microg.enable = true;
+
+        apps.vanadium.enable = true;
+        webview.vanadium.enable = true;
+        webview.vanadium.availableByDefault = true;
+        webview.vanadium.isFallback = true;
+      });
 
       homeConfigurations."${defaultUsername}" = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
