@@ -17,6 +17,7 @@
       librewolf = (prev.librewolf.override {
         nativeMessagingHosts = [ final.gnome-browser-connector ];
       });
+      librewolf-unwrapped = (prev.librewolf-unwrapped.override { pipewireSupport = true;});
     })
   ];
 }
