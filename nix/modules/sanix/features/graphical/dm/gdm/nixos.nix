@@ -9,7 +9,7 @@ in with lib;
     (builtins.elem "graphical-dm-gdm" config.sanix.features)
   ) {
     # Enable GDM
-    services.xserver.displayManager.gdm = {
+    services.displayManager.gdm = {
       enable = true;
       wayland = true;
     };
