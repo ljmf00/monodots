@@ -27,7 +27,6 @@ in with lib;
     statusPage = true;
 
     recommendedGzipSettings = true;
-    recommendedZstdSettings = true;
     recommendedBrotliSettings = true;
     recommendedOptimisation = true;
     recommendedProxySettings = true;
