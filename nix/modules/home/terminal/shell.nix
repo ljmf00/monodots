@@ -207,7 +207,7 @@
   };
 
   programs.starship.enable = true;
-  programs.thefuck.enable = true;
+  programs.pay-respects.enable = true;
   programs.dircolors.enable = true;
   programs.fzf.enable = true;
 
