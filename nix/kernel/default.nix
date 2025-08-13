@@ -134,4 +134,12 @@
             });
         })
     ];
+
+    boot.kernel.sysctl = {
+      "kernel.perf_event_paranoid" = 1;
+    };
+
+    environment.systemPackages = with pkgs; [
+      linuxPackages.perf
+    ];
 }
