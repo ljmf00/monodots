@@ -26,5 +26,10 @@
 
     # Enable gnome theme on QT
     qt.platformTheme = "gnome";
+
+    environment.systemPackages = with pkgs; [
+      gnome-themes-extra
+      adwaita-icon-theme
+    ];
   };
 }
