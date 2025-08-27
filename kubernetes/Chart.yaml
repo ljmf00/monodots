@@ -9,10 +9,10 @@ dependencies:
   #   alias: traefik-ingress
   - name: redis
     repository: oci://registry-1.docker.io/bitnamicharts
-    version: 18.5.0
+    version: 22.0.6
     alias: searxng-redis
   - name: searxng
-    repository: https://charts.searxng.org
+    repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
     version: 1.0.1
   - name: wireguard
     repository: https://bryopsida.github.io/wireguard-chart

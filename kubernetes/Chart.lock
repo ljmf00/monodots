@@ -1,9 +1,9 @@
 dependencies:
 - name: redis
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 18.5.0
+  version: 22.0.6
 - name: searxng
-  repository: https://charts.searxng.org
+  repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
   version: 1.0.1
 - name: wireguard
   repository: https://bryopsida.github.io/wireguard-chart
@@ -17,5 +17,5 @@ dependencies:
 - name: codeproject-ai-server
   repository: oci://tccr.io/truecharts
   version: 4.5.1
-digest: sha256:edddd6142b2c0388d1ce9b49a73db579c08b2f7323b1ddd2f5be8d2d11de8881
-generated: "2025-06-16T09:26:09.762293585+01:00"
+digest: sha256:2faca14278e51971dbdb913c8a982d7b7736acb022c31ff28680e1657ee53bab
+generated: "2025-08-27T19:08:10.108257953+01:00"
