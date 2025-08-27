@@ -137,7 +137,7 @@ searxng:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "37a6ab8c-a81f-4dfc-9c71-4ba585f3622d"
+    GENERATION: "0dce3664-24da-40ba-b08e-063600b62ad3"
 
     # TODO: increase workers/threads when more nodes are available
     UWSGI_WORKERS: 2
