@@ -94,6 +94,7 @@ searxng:
       server:
         image_proxy: true
         limiter: true
+        method: "GET"
 
         http_protocol_version: "1.1"
       
@@ -119,7 +120,7 @@ searxng:
       search:
         autocomplete: "google"
         favicon_resolver: "duckduckgo"
-        default_lang: "pt-PT"
+        default_lang: "all"
 
         formats:
           - html
@@ -128,8 +129,33 @@ searxng:
           # - rss
       
       plugins:
+        searx.plugins.calculator.SXNGPlugin:
+          active: true
+
+        searx.plugins.hash_plugin.SXNGPlugin:
+          active: true
+
+        searx.plugins.self_info.SXNGPlugin:
+          active: true
+
+        searx.plugins.unit_converter.SXNGPlugin:
+          active: true
+
+        searx.plugins.ahmia_filter.SXNGPlugin:
+          active: true
+
+        searx.plugins.hostnames.SXNGPlugin:
+          active: true
+
+        searx.plugins.time_zone.SXNGPlugin:
+          active: true
+
+        searx.plugins.oa_doi_rewrite.SXNGPlugin:
+          active: true
+
         searx.plugins.tor_check.SXNGPlugin:
           active: true
+
         searx.plugins.tracker_url_remover.SXNGPlugin:
           active: true
 
@@ -137,7 +163,7 @@ searxng:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "0dce3664-24da-40ba-b08e-063600b62ad3"
+    GENERATION: "46e7910e-df77-431f-a481-535f84b569f2"
 
     # TODO: increase workers/threads when more nodes are available
     UWSGI_WORKERS: 2
