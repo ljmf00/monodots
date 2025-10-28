@@ -10,7 +10,7 @@ dependencies:
   version: 0.8.12
 - name: ingress-nginx
   repository: https://kubernetes.github.io/ingress-nginx
-  version: 4.12.0
+  version: 4.13.3
 - name: prometheus-adapter
   repository: https://prometheus-community.github.io/helm-charts
   version: 4.14.1
@@ -23,5 +23,5 @@ dependencies:
 - name: konnectivity
   repository: https://linode.github.io/konnectivity
   version: v0.1.0
-digest: sha256:34839e599260a5738434b57c9592f9c06d4111006cffee7a124937f140317b77
-generated: "2025-06-16T00:58:34.945670583+01:00"
+digest: sha256:f0beee335983b62a02e39192e7797f677c763eed8ad887e19a83d54c56ea0ed9
+generated: "2025-10-28T18:40:28.638617776Z"

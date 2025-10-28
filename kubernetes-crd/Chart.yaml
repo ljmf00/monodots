@@ -5,7 +5,7 @@ description: A Helm chart for Kubernetes
 dependencies:
   - name: cert-manager
     repository: https://charts.jetstack.io
-    version: 1.18.2
+    version: 1.19.1
   - name: kube-prometheus-stack
     repository: https://prometheus-community.github.io/helm-charts
     version: 77.0.2
