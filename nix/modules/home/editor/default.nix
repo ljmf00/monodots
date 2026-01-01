@@ -5,5 +5,6 @@ in with lib;
 {
   imports = [
     ./neovim.nix
+    ./fresh.nix
   ];
 }
