@@ -108,7 +108,7 @@
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = false;
-                extraSpecialArgs = { inherit inputs stablePkgs nextPkgs; };
+                extraSpecialArgs = { inherit inputs stablePkgs nextPkgs nativePkgs; };
 
                 users.${username} = {config, pkgs, ... }:
                 {
