@@ -15,5 +15,6 @@
     ./../../modules/nixos/virtualisation.nix
 
     ./../../modules/nixos/crossplatform.nix
+    ./../../modules/nixos/games.nix
   ];
 }
