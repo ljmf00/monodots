@@ -52,7 +52,7 @@ searxng-redis:
   architecture: standalone
   auth:
     enabled: false
-  
+
   # no need to for persistence for cache nodes
   master:
     persistence:
@@ -97,7 +97,7 @@ searxng:
         method: "GET"
 
         http_protocol_version: "1.1"
-      
+
       redis:
         url: redis://@searxng-redis-master:6379/0
 
@@ -127,7 +127,7 @@ searxng:
           # - json
           # - csv
           # - rss
-      
+
       plugins:
         searx.plugins.calculator.SXNGPlugin:
           active: true
@@ -163,7 +163,7 @@ searxng:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "719203a7-71f0-48cf-9ee6-d8cea1e5ec6f"
+    GENERATION: "326aae98-9ffb-438a-89c9-fe9119862e6c"
 
     # TODO: increase workers/threads when more nodes are available
     UWSGI_WORKERS: 2
