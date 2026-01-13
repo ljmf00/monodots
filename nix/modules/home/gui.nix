@@ -70,4 +70,10 @@
     "org/gnome/shell/weather"."automatic-location" = true;
     "org/gnome/system/location".enabled = true;
   };
+  
+  home.packages = with pkgs; [
+    (inkscape-with-extensions.override {
+      inkscapeExtensions = with inkscape-extensions; [ inkstitch ];
+    })
+  ];
 }
