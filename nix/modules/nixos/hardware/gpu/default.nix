@@ -14,7 +14,7 @@ in with lib;
       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       libvdpau-va-gl
       libva-utils
-      vaapiVdpau
+      libva-vdpau-driver
       vdpauinfo
       egl-wayland
       wgpu-utils
@@ -41,7 +41,7 @@ in with lib;
     nvtopPackages.full
 
     libva-utils
-    glxinfo
+    mesa-demos
 
     vulkan-tools
     vulkan-validation-layers

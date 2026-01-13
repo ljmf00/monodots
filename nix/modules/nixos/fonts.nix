@@ -17,18 +17,17 @@
       nerd-fonts.inconsolata
 
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
 
       noto-fonts-lgc-plus
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-extra
 
       inconsolata
       fira-code-symbols
       font-awesome
 
-      ubuntu_font_family
+      ubuntu-classic
       liberation_ttf
       roboto-mono
       roboto

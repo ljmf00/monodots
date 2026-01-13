@@ -14,7 +14,7 @@
                     name = "hardening-kernel-mkconfig";
                     patch = null;
 
-                    extraStructuredConfig =
+                    structuredExtraConfig =
                         with lib;
                         with lib.kernel;
                         with (lib.kernel.whenHelpers version);
@@ -80,7 +80,6 @@
 
                       GCC_PLUGIN_STRUCTLEAK = option yes; # A port of the PaX structleak plugin
                       GCC_PLUGIN_STRUCTLEAK_BYREF_ALL = option yes; # Also cover structs passed by address
-                      GCC_PLUGIN_STACKLEAK = whenAtLeast "4.20" yes; # A port of the PaX stackleak plugin
                       GCC_PLUGIN_RANDSTRUCT = whenOlder "5.19" yes; # A port of the PaX randstruct plugin
                       GCC_PLUGIN_RANDSTRUCT_PERFORMANCE = whenOlder "5.19" yes;
 
@@ -140,6 +139,6 @@
     };
 
     environment.systemPackages = with pkgs; [
-      linuxPackages.perf
+      perf
     ];
 }

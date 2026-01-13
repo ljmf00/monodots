@@ -16,18 +16,11 @@ in with lib;
 
   services.xserver.videoDrivers = mkGenericDefault [ "amdgpu" "radeon" ];
 
-  hardware.graphics.extraPackages = with pkgs; [
-      amdvlk
-    ] ++
-    (
+  hardware.graphics.extraPackages = with pkgs; (
       if pkgs ? rocmPackages.clr
       then with pkgs.rocmPackages; [ clr clr.icd ]
       else with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ]
     );
-
-  hardware.graphics.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
 
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1";
