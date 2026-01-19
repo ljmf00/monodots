@@ -39,5 +39,8 @@
   
   swapDevices = [ ];
 
-  boot.kernelModules = [ "rtw89" ];
+  boot.kernelModules = [
+    # Wifi drivers for RTL8852BE
+    "rtw88" "rtw89"
+  ];
 }
