@@ -5,7 +5,8 @@
     # packages
     nixpkgs.url              = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-nixos.url        = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url       = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs2405.url          = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs-stable.url       = "github:nixos/nixpkgs/release-25.05";
     nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
 
     # android building
@@ -70,11 +71,12 @@
 
       # alias to system-specific packages
 
-      pkgs       = import inputs.nixpkgs { inherit system; };
-      nixosPkgs  = import inputs.nixpkgs-nixos { inherit system; };
-      stablePkgs = import inputs.nixpkgs-stable { inherit system; };
-      nextPkgs   = import inputs.nixpkgs-staging-next { inherit system; };
-      nativePkgs = import inputs.nixpkgs {
+      pkgs        = import inputs.nixpkgs { inherit system; };
+      nixosPkgs   = import inputs.nixpkgs-nixos { inherit system; };
+      nix24Pkgs = import inputs.nixpkgs2405 { inherit system; };
+      stablePkgs  = import inputs.nixpkgs-stable { inherit system; };
+      nextPkgs    = import inputs.nixpkgs-staging-next { inherit system; };
+      nativePkgs  = import inputs.nixpkgs {
         overlays = [
           (self: super: {
             stdenv = super.impureUseNativeOptimizations super.stdenv;
@@ -87,7 +89,7 @@
       mkSystem = pkgs: system: hostname: username:
         pkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs stablePkgs nextPkgs nativePkgs; };
+          specialArgs = { inherit inputs nix24Pkgs stablePkgs nextPkgs nativePkgs; };
 
           modules = [
             {
@@ -108,7 +110,7 @@
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = false;
-                extraSpecialArgs = { inherit inputs stablePkgs nextPkgs nativePkgs; };
+                extraSpecialArgs = { inherit inputs nix24Pkgs stablePkgs nextPkgs nativePkgs; };
 
                 users.${username} = {config, pkgs, ... }:
                 {

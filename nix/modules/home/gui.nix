@@ -1,4 +1,4 @@
-{ config, pkgs, stablePkgs, lib, inputs, ...}:
+{ config, pkgs, nix24Pkgs, stablePkgs, lib, inputs, ...}:
   with lib;
 {
   services.gpg-agent.pinentry.package = mkDefault pkgs.pinentry-gnome3;
@@ -72,7 +72,7 @@
   };
   
   home.packages = with pkgs; [
-    stablePkgs.digikam
+    nix24Pkgs.digikam
     (inkscape-with-extensions.override {
       inkscapeExtensions = with inkscape-extensions; [ inkstitch ];
     })
