@@ -44,17 +44,17 @@
     systemd.services."autovt@tty1".enable = false;
 
     # Enable interfacing X11 with Wayland
-    programs.xwayland.enable = true;
+    # programs.xwayland.enable = true;
 
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      QT_QPA_PLATFORM = "wayland";
-      SDL_VIDEODRIVER = "wayland";
-      XDG_SESSION_TYPE = "wayland";
-      MOZ_USE_XINPUT2 = "1";
-      MOZ_ENABLE_WAYLAND = "1";
-      MOZ_DBUS_REMOTE = "1";
-    };
+    # environment.sessionVariables = {
+    #   NIXOS_OZONE_WL = "1";
+    #   QT_QPA_PLATFORM = "wayland";
+    #   SDL_VIDEODRIVER = "wayland";
+    #   XDG_SESSION_TYPE = "wayland";
+    #   MOZ_USE_XINPUT2 = "1";
+    #   MOZ_ENABLE_WAYLAND = "1";
+    #   MOZ_DBUS_REMOTE = "1";
+    # };
 
     # Enable QT framework
     qt.enable = true;
