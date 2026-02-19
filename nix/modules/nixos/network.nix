@@ -19,6 +19,9 @@ in with lib;
   networking.networkmanager = {
     enable = true;
     wifi.backend = "iwd";
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
   };
   systemd.services.NetworkManager-wait-online.enable = false;
 
