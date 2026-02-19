@@ -120,8 +120,8 @@ resource "cloudflare_record" "status_lsferreira" {
 
 resource "cloudflare_record" "home_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "home.lsferreira.net   "
-  value = "2.80.252.193"
+  name = "home.lsferreira.net"
+  value = "188.80.144.16"
   type = "A"
   proxied = false
 
