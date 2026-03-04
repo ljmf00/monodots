@@ -18,7 +18,6 @@ in with lib;
   # enable network manager
   networking.networkmanager = {
     enable = true;
-    wifi.backend = "iwd";
     plugins = with pkgs; [
       networkmanager-openvpn
     ];
@@ -26,7 +25,7 @@ in with lib;
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # Wireless settings (managed by network-manager)
-  networking.wireless.iwd.enable = true;
+  networking.wireless.enable = true;
   networking.wireless.userControlled.enable = true;
   systemd.services.wpa_supplicant.wantedBy = mkGenericDefault [];
 
