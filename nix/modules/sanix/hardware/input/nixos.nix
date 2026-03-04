@@ -10,7 +10,7 @@
 
       boot.kernelParams = [
         # Keychron firmware is very stupid and requires this to be set
-        "hid_apple.fnmode=2" "hid_apple.swap_opt_cmd=1"
+        "hid_apple.fnmode=2" "hid_apple.swap_opt_cmd=0"
       ];
   };
 }
