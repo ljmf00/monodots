@@ -16,5 +16,6 @@
 
     ./../../modules/nixos/crossplatform.nix
     ./../../modules/nixos/games.nix
+    ./../../modules/nixos/ai.nix
   ];
 }

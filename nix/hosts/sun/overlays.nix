@@ -1,1 +1,5 @@
-(final: prev: {})
+(final: prev: {
+    ollama = (prev.ollama.override {
+        acceleration = "cuda";
+    });
+})
