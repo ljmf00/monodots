@@ -38,6 +38,46 @@ resource "cloudflare_record" "nc_anx04_1_a_lsferreira" {
   comment = "terraform"
 }
 
+resource "cloudflare_record" "dh_o_ams_01_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "dh-o-ams-01.internal.lsferreira.net"
+  value = "85.208.9.230"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "dh_o_ams_02_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "dh-o-ams-02.internal.lsferreira.net"
+  value = "85.208.9.229"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "dh_o_ams_03_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "dh-o-ams-03.internal.lsferreira.net"
+  value = "151.243.213.17"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "dh_o_ams_04_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "dh-o-ams-04.internal.lsferreira.net"
+  value = "151.243.213.18"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
 resource "cloudflare_record" "bak_nc_anx04_1_a_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "nc-anx04-1._.lsferreira.net"
@@ -50,7 +90,7 @@ resource "cloudflare_record" "bak_nc_anx04_1_a_lsferreira" {
 
 resource "cloudflare_record" "dh_p_de_frkt_01_a_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "dh-p-de_frkt-01.internal.lsferreira.net"
+  name = "dh-p-de-frkt-01.internal.lsferreira.net"
   value = "92.112.125.156"
   type = "A"
   proxied = false
@@ -103,6 +143,16 @@ resource "cloudflare_record" "master_k8s_dh_p_de_frkt_01_aaaa_lsferreira" {
   name = "master.k8s.internal.lsferreira.net"
   value = "2a12:bec4:1822:52::a"
   type = "AAAA"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "master_k3s_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "master.k3s.internal.lsferreira.net"
+  value = "152.53.18.215"
+  type = "A"
   proxied = false
 
   comment = "terraform"
