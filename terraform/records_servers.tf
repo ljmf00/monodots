@@ -78,15 +78,15 @@ resource "cloudflare_record" "k8s_dh_p_de_frkt_01_a_lsferreira" {
   comment = "terraform"
 }
 
-resource "cloudflare_record" "k8s_dh_p_de_frkt_01_aaaa_lsferreira" {
-  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "k8s.internal.lsferreira.net"
-  value = "2a12:bec4:1822:52::a"
-  type = "AAAA"
-  proxied = false
-
-  comment = "terraform"
-}
+# resource "cloudflare_record" "k8s_dh_p_de_frkt_01_aaaa_lsferreira" {
+#   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+#   name = "k8s.internal.lsferreira.net"
+#   value = "2a12:bec4:1822:52::a"
+#   type = "AAAA"
+#   proxied = false
+# 
+#   comment = "terraform"
+# }
 
 resource "cloudflare_record" "master_k8s_dh_p_de_frkt_01_a_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
@@ -98,12 +98,12 @@ resource "cloudflare_record" "master_k8s_dh_p_de_frkt_01_a_lsferreira" {
   comment = "terraform"
 }
 
-resource "cloudflare_record" "master_k8s_dh_p_de_frkt_01_aaaa_lsferreira" {
-  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "master.k8s.internal.lsferreira.net"
-  value = "2a12:bec4:1822:52::a"
-  type = "AAAA"
-  proxied = false
-
-  comment = "terraform"
-}
+# resource "cloudflare_record" "master_k8s_dh_p_de_frkt_01_aaaa_lsferreira" {
+#   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+#   name = "master.k8s.internal.lsferreira.net"
+#   value = "2a12:bec4:1822:52::a"
+#   type = "AAAA"
+#   proxied = false
+# 
+#   comment = "terraform"
+# }
