@@ -98,6 +98,26 @@ resource "cloudflare_record" "search_lsferreira" {
   comment = "terraform"
 }
 
+resource "cloudflare_record" "search_staging_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "search.staging.lsferreira.net"
+  value = "gateway.lsferreira.net"
+  type = "CNAME"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "rss_staging_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "rss.staging.lsferreira.net"
+  value = "gateway.lsferreira.net"
+  type = "CNAME"
+  proxied = false
+
+  comment = "terraform"
+}
+
 resource "cloudflare_record" "bridge_rss_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "bridge.rss.lsferreira.net"
