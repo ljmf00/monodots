@@ -10,9 +10,9 @@ dependencies:
   version: 0.8.12
 - name: prometheus-adapter
   repository: https://prometheus-community.github.io/helm-charts
-  version: 4.14.1
+  version: 5.3.0
 - name: descheduler
   repository: https://kubernetes-sigs.github.io/descheduler
   version: 0.33.0
-digest: sha256:fb413b1bb02d011c3c66eaa7d991d38fbb4d3c3c31fe2f2f2696f5ff4fc01617
-generated: "2026-04-06T23:54:49.903747695+01:00"
+digest: sha256:79a37e1cf51d783fa39058ee43145d9d18d81678d47ff4f62c9df25adb27b764
+generated: "2026-04-07T02:12:54.499938856Z"
