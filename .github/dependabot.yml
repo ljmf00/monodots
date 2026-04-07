@@ -49,7 +49,7 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "terraform"
-    directory: "/deploy/"
+    directory: "/terraform/"
     schedule:
       interval: "daily"
     allow:
