@@ -3,10 +3,6 @@ name: monodots
 description: A Helm chart for Kubernetes
 
 dependencies:
-  # - name: traefik
-  #   repository: https://traefik.github.io/charts
-  #   version: 34.4.1
-  #   alias: traefik-ingress
   - name: redis
     repository: https://charts.bitnami.com/bitnami
     version: 25.3.9
@@ -17,9 +13,6 @@ dependencies:
   - name: wireguard
     repository: https://bryopsida.github.io/wireguard-chart
     version: 0.29.0
-  - name: emqx-enterprise
-    repository: https://repos.emqx.io/charts
-    version: 5.10.0
   - name: app-template
     repository: https://bjw-s-labs.github.io/helm-charts
     version: 4.6.2
