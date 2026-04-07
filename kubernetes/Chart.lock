@@ -1,7 +1,7 @@
 dependencies:
 - name: redis
-  repository: oci://registry-1.docker.io/bitnamicharts
-  version: 22.0.6
+  repository: https://charts.bitnami.com/bitnami
+  version: 25.3.9
 - name: searxng
   repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
   version: 1.0.1
@@ -11,11 +11,8 @@ dependencies:
 - name: emqx-enterprise
   repository: https://repos.emqx.io/charts
   version: 5.10.0
-- name: rss-bridge
-  repository: oci://tccr.io/truecharts
-  version: 13.1.0
-- name: codeproject-ai-server
-  repository: oci://tccr.io/truecharts
-  version: 4.5.1
-digest: sha256:2faca14278e51971dbdb913c8a982d7b7736acb022c31ff28680e1657ee53bab
-generated: "2025-08-27T19:08:10.108257953+01:00"
+- name: app-template
+  repository: https://bjw-s-labs.github.io/helm-charts
+  version: 4.6.2
+digest: sha256:2869d9194edf2e791b34d086089301d40db2bb0b5c861c07f05390dc8efc28db
+generated: "2026-04-07T02:01:46.073167436+01:00"

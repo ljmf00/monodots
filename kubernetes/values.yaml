@@ -1,52 +1,3 @@
-# traefik-ingress:
-#   service:
-#     enabled: true
-#     type: ClusterIP
-
-#   deployment:
-#     enabled: true
-#     replicas: 3
-
-#   ingressRoute:
-#     dashboard:
-#       enabled: true
-
-#   ports:
-#     traefik:
-#       port: 8888
-#     web:
-#       port: 8080
-
-#       redirections:
-#         entryPoint:
-#           to: websecure
-#           scheme: https
-#           permanent: true
-
-#     websecure:
-#       port: 8443
-
-#       tls:
-#         enabled: true
-
-#       http3:
-#         enabled: true
-
-wireguard:
-  autoscaling:
-    minReplicas: 1
-    maxReplicas: 2
-  daemonSet: true
-  useHostPort: true
-  secretName: monodots-wg-privkey
-  wireguard:
-    allowWan: false
-    clients:
-    - AllowedIPs: "10.34.0.2/32"
-      PublicKey: "IDv2UdXfzLjOeW/JL7jV373Cr0gyVYdF4mjo4vo4bX0="
-    serverAddress: "10.34.0.1/24"
-    serverCidr: "10.34.0.0/24"
-
 searxng-redis:
   fullnameOverride: searxng-redis
   architecture: standalone
@@ -61,7 +12,7 @@ searxng-redis:
 searxng:
   controller:
     # TODO: increase number of replicas when more nodes are available
-    replicas: 3
+    replicas: 5
 
     dnsPolicy: None
     dnsConfig:
@@ -165,21 +116,28 @@ searxng:
     TZ: "Europe/Lisbon"
     GENERATION: "326aae98-9ffb-438a-89c9-fe9119862e6c"
 
-    # TODO: increase workers/threads when more nodes are available
-    UWSGI_WORKERS: 2
-    UWSGI_THREADS: 2
-
 rss-bridge:
-  service:
+  global:
+    nameOverride: rss-bridge
+  controllers:
     main:
-      ports:
+      replicas: 5
+      type: deployment
+      strategy: RollingUpdate
+      rollingUpdate:
+        unavailable: 1
+      containers:
         main:
-          port: 10225
+          image:
+            repository: ghcr.io/rss-bridge/rss-bridge
+            tag: latest
+            pullPolicy: Always
 
-codeproject-ai-server:
+          env: {}
   service:
     main:
+      controller: main
+      type: ClusterIP
       ports:
-        main:
-          port: 32168
-          targetPort: 32168
+        http:
+          port: 80

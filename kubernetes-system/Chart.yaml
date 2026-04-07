@@ -13,21 +13,12 @@ dependencies:
     repository: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts
     version: 0.8.12
     alias: infisical-operator
-  - name: ingress-nginx
-    repository: https://kubernetes.github.io/ingress-nginx
-    version: 4.13.3
   - name: prometheus-adapter
     repository: https://prometheus-community.github.io/helm-charts
     version: 4.14.1
-  - name: metrics-server
-    repository: https://kubernetes-sigs.github.io/metrics-server
-    version: 3.12.2
   - name: descheduler
     repository: https://kubernetes-sigs.github.io/descheduler
     version: 0.33.0
-  - name: konnectivity
-    repository: https://linode.github.io/konnectivity
-    version: 0.1.0
 
 # A chart can be either an 'application' or a 'library' chart.
 #

@@ -4,13 +4,15 @@ metadata:
   name: ingress-searxng
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
 spec:
   tls:
   - hosts:
     - search.lsferreira.net
     secretName: monodots-searxng-tls
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: search.lsferreira.net
     http:
@@ -22,4 +24,4 @@ spec:
             name: monodots-searxng
             port:
               number: 8080
-  ingressClassName: nginx
+  ingressClassName: traefik

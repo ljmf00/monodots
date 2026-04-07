@@ -8,20 +8,11 @@ dependencies:
 - name: secrets-operator
   repository: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts
   version: 0.8.12
-- name: ingress-nginx
-  repository: https://kubernetes.github.io/ingress-nginx
-  version: 4.13.3
 - name: prometheus-adapter
   repository: https://prometheus-community.github.io/helm-charts
   version: 4.14.1
-- name: metrics-server
-  repository: https://kubernetes-sigs.github.io/metrics-server
-  version: 3.12.2
 - name: descheduler
   repository: https://kubernetes-sigs.github.io/descheduler
   version: 0.33.0
-- name: konnectivity
-  repository: https://linode.github.io/konnectivity
-  version: v0.1.0
-digest: sha256:f0beee335983b62a02e39192e7797f677c763eed8ad887e19a83d54c56ea0ed9
-generated: "2025-10-28T18:40:28.638617776Z"
+digest: sha256:fb413b1bb02d011c3c66eaa7d991d38fbb4d3c3c31fe2f2f2696f5ff4fc01617
+generated: "2026-04-06T23:54:49.903747695+01:00"

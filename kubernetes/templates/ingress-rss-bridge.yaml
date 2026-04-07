@@ -4,15 +4,17 @@ metadata:
   name: ingress-rss-bridge
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
 spec:
   tls:
   - hosts:
-    - bridge.rss.lsferreira.net
+    - rss.lsferreira.net
     secretName: monodots-rss-bridge-tls
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
-  - host: bridge.rss.lsferreira.net
+  - host: rss.lsferreira.net
     http:
       paths:
       - path: /
@@ -21,5 +23,5 @@ spec:
           service:
             name: monodots-rss-bridge
             port:
-              number: 10225
-  ingressClassName: nginx
+              number: 80
+  ingressClassName: traefik

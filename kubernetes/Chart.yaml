@@ -8,8 +8,8 @@ dependencies:
   #   version: 34.4.1
   #   alias: traefik-ingress
   - name: redis
-    repository: oci://registry-1.docker.io/bitnamicharts
-    version: 22.0.6
+    repository: https://charts.bitnami.com/bitnami
+    version: 25.3.9
     alias: searxng-redis
   - name: searxng
     repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
@@ -20,12 +20,10 @@ dependencies:
   - name: emqx-enterprise
     repository: https://repos.emqx.io/charts
     version: 5.10.0
-  - name: rss-bridge
-    repository: oci://tccr.io/truecharts
-    version: 13.1.0
-  - name: codeproject-ai-server
-    repository: oci://tccr.io/truecharts
-    version: 4.5.1
+  - name: app-template
+    repository: https://bjw-s-labs.github.io/helm-charts
+    version: 4.6.2
+    alias: rss-bridge
 
 # A chart can be either an 'application' or a 'library' chart.
 #
