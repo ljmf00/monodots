@@ -6,6 +6,22 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+  - package-ecosystem: "helm"
+    directory: "/kubernetes/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "helm"
+    directory: "/kubernetes-crd/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "helm"
+    directory: "/kubernetes-bootstrap/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "helm"
+    directory: "/kubernetes-system/"
+    schedule:
+      interval: "daily"
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
