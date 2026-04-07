@@ -7,9 +7,9 @@ dependencies:
   version: 1.0.1
 - name: wireguard
   repository: https://bryopsida.github.io/wireguard-chart
-  version: 0.29.0
+  version: 0.31.2
 - name: app-template
   repository: https://bjw-s-labs.github.io/helm-charts
   version: 4.6.2
-digest: sha256:015dc4d4821fe66361eb6b9d596792f5cbf5a1773f845933b8d8d80796326e52
-generated: "2026-04-07T03:11:05.368764056+01:00"
+digest: sha256:8a9dfaad43e25afdffa38d4446e372cd6e4063560d2f463b14aa4c8ce5e4be4e
+generated: "2026-04-07T02:13:53.791696621Z"
