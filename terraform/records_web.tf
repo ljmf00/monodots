@@ -28,16 +28,6 @@ resource "cloudflare_record" "s_lsferreira" {
   comment = "terraform"
 }
 
-resource "cloudflare_record" "rss_lsferreira" {
-  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "rss.lsferreira.net"
-  value = "ft-s-lu-04.internal.lsferreira.net"
-  type = "CNAME"
-  proxied = true
-
-  comment = "terraform"
-}
-
 resource "cloudflare_record" "social_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "social.lsferreira.net"
@@ -91,7 +81,7 @@ resource "cloudflare_record" "my_lsferreira" {
 resource "cloudflare_record" "search_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "search.lsferreira.net"
-  value = "k8s.internal.lsferreira.net"
+  value = "gateway.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -118,10 +108,10 @@ resource "cloudflare_record" "rss_staging_lsferreira" {
   comment = "terraform"
 }
 
-resource "cloudflare_record" "bridge_rss_lsferreira" {
+resource "cloudflare_record" "rss_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "bridge.rss.lsferreira.net"
-  value = "k8s.internal.lsferreira.net"
+  name = "rss.lsferreira.net"
+  value = "gateway.lsferreira.net"
   type = "CNAME"
   proxied = false
 
