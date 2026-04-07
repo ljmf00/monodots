@@ -11,7 +11,7 @@ dependencies:
     version: 0.1.0
   - name: secrets-operator
     repository: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts
-    version: 0.8.12
+    version: 0.10.29
     alias: infisical-operator
   - name: prometheus-adapter
     repository: https://prometheus-community.github.io/helm-charts
