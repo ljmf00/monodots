@@ -5,7 +5,7 @@ description: A Helm chart for Kubernetes
 dependencies:
   - name: secrets-store-csi-driver
     repository: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
-    version: 1.4.8
+    version: 1.5.6
   - name: infisical-csi-provider
     repository: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts
     version: 0.1.0
