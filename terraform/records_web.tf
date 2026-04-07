@@ -81,7 +81,7 @@ resource "cloudflare_record" "my_lsferreira" {
 resource "cloudflare_record" "search_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "search.lsferreira.net"
-  value = "gateway.lsferreira.net"
+  value = "geo.gateway.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -91,7 +91,7 @@ resource "cloudflare_record" "search_lsferreira" {
 resource "cloudflare_record" "search_staging_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "search.staging.lsferreira.net"
-  value = "gateway.lsferreira.net"
+  value = "geo.gateway.lsferreira.net"
   type = "CNAME"
   proxied = false
 
@@ -101,7 +101,7 @@ resource "cloudflare_record" "search_staging_lsferreira" {
 resource "cloudflare_record" "rss_staging_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "rss.staging.lsferreira.net"
-  value = "gateway.lsferreira.net"
+  value = "geo.gateway.lsferreira.net"
   type = "CNAME"
   proxied = false
 
@@ -111,9 +111,9 @@ resource "cloudflare_record" "rss_staging_lsferreira" {
 resource "cloudflare_record" "rss_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "rss.lsferreira.net"
-  value = "gateway.lsferreira.net"
+  value = "geo.gateway.lsferreira.net"
   type = "CNAME"
-  proxied = false
+  proxied = true
 
   comment = "terraform"
 }

@@ -88,10 +88,50 @@ resource "cloudflare_record" "bak_nc_anx04_1_a_lsferreira" {
   comment = "terraform"
 }
 
-resource "cloudflare_record" "gateway_a_lsferreira" {
+resource "cloudflare_record" "geo_gateway_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "geo.gateway.lsferreira.net"
+  value = "198.251.90.61"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "gateway_ch_a_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
   name = "gateway.lsferreira.net"
-  value = "198.251.90.61"
+  value = "107.189.6.72"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "gateway_us1_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "gateway.lsferreira.net"
+  value = "209.141.55.108"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "gateway_us2_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "gateway.lsferreira.net"
+  value = "198.98.62.203"
+  type = "A"
+  proxied = false
+
+  comment = "terraform"
+}
+
+resource "cloudflare_record" "gateway_us3_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
+  name = "gateway.lsferreira.net"
+  value = "45.61.188.200"
   type = "A"
   proxied = false
 
