@@ -3,16 +3,6 @@ name: monodots-system
 description: A Helm chart for Kubernetes
 
 dependencies:
-  - name: secrets-store-csi-driver
-    repository: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
-    version: 1.5.6
-  - name: infisical-csi-provider
-    repository: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts
-    version: 0.2.2
-  - name: secrets-operator
-    repository: https://dl.cloudsmith.io/public/infisical/helm-charts/helm/charts
-    version: 0.10.29
-    alias: infisical-operator
   - name: prometheus-adapter
     repository: https://prometheus-community.github.io/helm-charts
     version: 5.3.0
