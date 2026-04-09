@@ -64,8 +64,8 @@ resource "cloudflare_record" "ch_gateway_cname_lsferreira" {
 
 resource "cloudflare_record" "us1_gateway_cname_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.zones[0].id
-  name = "ft-lv-kvm28.internal.lsferreira.net"
-  value = "209.141.55.108"
+  name = "us1.gateway.lsferreira.net"
+  value = "ft-lv-kvm28.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
 
