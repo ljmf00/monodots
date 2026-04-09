@@ -7,7 +7,34 @@ searxng-redis:
   # no need to for persistence for cache nodes
   master:
     persistence:
-      enabled: false
+      enabled: true
+
+wireguard:
+  daemonSet: true
+
+  autoscaling:
+    minReplicas: 1
+    maxReplicas: 2
+
+  useHostPort: true
+  hostPort: 51822
+  service:
+    type: ClusterIP
+    port: 51822
+    ipFamilyPolicy: PreferDualStack
+
+  nodeSelector:
+    node-role.kubernetes.io/gateway: "true"
+
+  # secretName: monodots-wg-privkey
+  wireguard:
+    clients:
+    - AllowedIPs: "10.34.0.2/32"
+      PublicKey: "rrNHUE1vmRIi1JP5DR8A792jsqtv+vJbGoqZuxX6gHE="
+      PersistentKeepalive: 25
+    serverAddress: "10.34.0.1/24"
+    serverCidr: "10.34.0.0/24"
+    forwardIPv6: true
 
 searxng:
   controller:
@@ -24,7 +51,7 @@ searxng:
 
   persistence:
     limiter:
-      enabled: true
+      enabled: false
       type: configMap
       name: configmap-searxng-limiter
       mountPath: /etc/searxng/limiter.toml
@@ -44,7 +71,7 @@ searxng:
 
       server:
         image_proxy: true
-        limiter: true
+        limiter: false
         method: "GET"
 
         http_protocol_version: "1.1"
@@ -114,7 +141,7 @@ searxng:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "326aae98-9ffb-438a-89c9-fe9119862e6c"
+    GENERATION: "9371ece1-137c-4d82-b8e4-70cbe9bc4c98"
 
 rss-bridge:
   global:
