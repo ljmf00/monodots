@@ -1,18 +1,18 @@
 terraform {
   required_providers {
     infisical = {
-      source = "infisical/infisical"
+      source  = "infisical/infisical"
       version = "0.16.12"
     }
     cloudflare = {
-      source = "cloudflare/cloudflare"
-      version = "4.52.5"
+      source  = "cloudflare/cloudflare"
+      version = "5.19.0-beta.5"
     }
   }
 }
 
 provider "infisical" {
-  client_id = "${var.infisical_client_id}"
+  client_id     = "${var.infisical_client_id}"
   client_secret = "${var.infisical_client_secret}"
 }
 
