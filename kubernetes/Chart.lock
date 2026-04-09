@@ -1,7 +1,7 @@
 dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 25.3.9
+  version: 25.3.10
 - name: searxng
   repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
   version: 1.0.1
@@ -11,5 +11,5 @@ dependencies:
 - name: app-template
   repository: https://bjw-s-labs.github.io/helm-charts
   version: 4.6.2
-digest: sha256:8a9dfaad43e25afdffa38d4446e372cd6e4063560d2f463b14aa4c8ce5e4be4e
-generated: "2026-04-07T02:13:53.791696621Z"
+digest: sha256:7ba4b4bc1a50650331ed460271584919fd15e620ef6ef6db2c26ab6b0bf3961b
+generated: "2026-04-09T22:00:06.011366619Z"
