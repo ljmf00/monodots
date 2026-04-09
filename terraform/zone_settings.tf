@@ -229,21 +229,6 @@ import {
   id = "${data.cloudflare_zones.lsferreira_net.result[0].id}/minify"
 }
 
-resource "cloudflare_zone_setting" "lsferreira_net_settings_security_header" {
-  zone_id    = data.cloudflare_zones.lsferreira_net.result[0].id
-  setting_id = "security_header"
-  value = {
-    strict_transport_security = {
-      enabled = true
-    }
-  }
-}
-
-import {
-  to = cloudflare_zone_setting.lsferreira_net_settings_security_header
-  id = "${data.cloudflare_zones.lsferreira_net.result[0].id}/security_header"
-}
-
 removed {
   from = cloudflare_zone_settings_override.lsferreira_net_settings
   lifecycle {
