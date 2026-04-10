@@ -221,9 +221,6 @@ resource "cloudflare_dns_record" "master_k3s_cname_lsferreira" {
   content = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -236,9 +233,6 @@ resource "cloudflare_dns_record" "master_k8s_cname_lsferreira" {
   content = "master.k3s.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -267,9 +261,6 @@ resource "cloudflare_dns_record" "nl_gateway_cname_lsferreira" {
   content = "dh-d-ams-01.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -282,9 +273,6 @@ resource "cloudflare_dns_record" "au_gateway_cname_lsferreira" {
   content = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -297,9 +285,6 @@ resource "cloudflare_dns_record" "ch_gateway_cname_lsferreira" {
   content = "ft-ch-kvm26.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -312,9 +297,6 @@ resource "cloudflare_dns_record" "us1_gateway_cname_lsferreira" {
   content = "ft-lv-kvm28.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -327,9 +309,6 @@ resource "cloudflare_dns_record" "us2_gateway_cname_lsferreira" {
   content = "uft-ny-kvm21.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
@@ -342,9 +321,6 @@ resource "cloudflare_dns_record" "us3_gateway_cname_lsferreira" {
   content = "ft-mia-kvm11.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }

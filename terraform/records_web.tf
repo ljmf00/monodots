@@ -228,9 +228,6 @@ resource "cloudflare_dns_record" "home_lsferreira" {
   content = "lsferreira.duckdns.org"
   type = "CNAME"
   proxied = false
-  settings = {
-    flatten_cname = true
-  }
 
   comment = "managed by terraform"
 }
