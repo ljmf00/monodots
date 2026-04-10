@@ -306,7 +306,7 @@ resource "cloudflare_dns_record" "us2_gateway_cname_lsferreira" {
   ttl = 1
 
   name = "us2.gateway.lsferreira.net"
-  content = "uft-ny-kvm21.internal.lsferreira.net"
+  content = "ft-ny-kvm21.internal.lsferreira.net"
   type = "CNAME"
   proxied = false
 
