@@ -513,6 +513,30 @@ resource "cloudflare_dns_record" "nc_anx04_1_aaaa_lsferreira" {
   comment = "managed by terraform"
 }
 
+resource "cloudflare_dns_record" "dh_s3_ey_nl_1_a_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
+  ttl = 1
+
+  name = "dh-s3-ey-nl-1.internal.lsferreira.net"
+  content = "195.206.234.134"
+  type = "A"
+  proxied = false
+
+  comment = "managed by terraform"
+}
+
+resource "cloudflare_dns_record" "dh_s3_ey_nl_1_aaaa_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
+  ttl = 1
+
+  name = "dh-s3-ey-nl-1.internal.lsferreira.net"
+  content = "2a12:bec4:1df0:fc::a"
+  type = "AAAA"
+  proxied = false
+
+  comment = "managed by terraform"
+}
+
 resource "cloudflare_dns_record" "dh_o_ams_01_a_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
   ttl = 1
