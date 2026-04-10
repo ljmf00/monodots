@@ -12,11 +12,14 @@ dependencies:
     version: 1.0.1
   - name: wireguard
     repository: https://bryopsida.github.io/wireguard-chart
-    version: 0.31.2
+    version: 0.29.0
   - name: app-template
     repository: https://bjw-s-labs.github.io/helm-charts
     version: 4.6.2
     alias: rss-bridge
+  - name: argo-cd
+    repository: https://argoproj.github.io/argo-helm
+    version: 9.5.0
 
 # A chart can be either an 'application' or a 'library' chart.
 #

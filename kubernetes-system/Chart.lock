@@ -5,5 +5,8 @@ dependencies:
 - name: descheduler
   repository: https://kubernetes-sigs.github.io/descheduler
   version: 0.35.1
-digest: sha256:203d62220753aa02837a4c191194051903e57cb35481b7e5e9b83997054747aa
-generated: "2026-04-07T05:51:32.00197456+01:00"
+- name: ingress-anubis
+  repository: oci://ghcr.io/jaredallard/helm-charts
+  version: 1.10.3
+digest: sha256:658311e4e067c5a837b002e3fdc6a6877ec170a809b963bc442f1dce1316f128
+generated: "2026-04-10T23:31:54.421628725+01:00"

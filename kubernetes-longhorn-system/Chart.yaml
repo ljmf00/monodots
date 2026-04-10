@@ -1,17 +1,11 @@
 apiVersion: v2
-name: monodots-system
+name: monodots-longhorn-system
 description: A Helm chart for Kubernetes
 
 dependencies:
-  - name: prometheus-adapter
-    repository: https://prometheus-community.github.io/helm-charts
-    version: 5.3.0
-  - name: descheduler
-    repository: https://kubernetes-sigs.github.io/descheduler
-    version: 0.35.1
-  - name: ingress-anubis
-    repository: oci://ghcr.io/jaredallard/helm-charts
-    version: 1.10.3
+  - name: longhorn
+    repository: https://charts.longhorn.io
+    version: 1.11.1
 
 # A chart can be either an 'application' or a 'library' chart.
 #

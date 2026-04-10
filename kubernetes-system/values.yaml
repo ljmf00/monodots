@@ -5,3 +5,7 @@ secrets-store-csi-driver:
   rotationPollInterval: 2m
   syncSecret:
     enabled: true
+
+ingress-anubis:
+  config:
+    WRAPPED_INGRESS_CLASS_NAME: "traefik"

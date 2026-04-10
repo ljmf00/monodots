@@ -1,0 +1,8 @@
+longhorn:
+  global:
+    nodeSelector:
+      lsferreira.net/monodots-has-storage: "true"
+
+  longhornUI:
+    nodeSelector:
+      node-role.kubernetes.io/worker: "true"
