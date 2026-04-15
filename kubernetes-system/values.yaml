@@ -7,5 +7,6 @@ secrets-store-csi-driver:
     enabled: true
 
 ingress-anubis:
+  replicaCount: 5
   config:
     WRAPPED_INGRESS_CLASS_NAME: "traefik"
