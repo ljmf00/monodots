@@ -165,7 +165,7 @@ resource "cloudflare_dns_record" "search_lsferreira" {
   ttl = 1
 
   name = "search.lsferreira.net"
-  content = "gateway.lsferreira.net"
+  content = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 
@@ -201,7 +201,7 @@ resource "cloudflare_dns_record" "rss_lsferreira" {
   ttl = 1
 
   name = "rss.lsferreira.net"
-  content = "gateway.lsferreira.net"
+  content = "nc-anx04-1.internal.lsferreira.net"
   type = "CNAME"
   proxied = true
 

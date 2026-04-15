@@ -329,17 +329,19 @@ resource "cloudflare_dns_record" "us3_gateway_cname_lsferreira" {
 # GATEWAY RECORD
 # =============================================================================
 
-resource "cloudflare_dns_record" "gateway_geo_a_lsferreira" {
-  zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
-  ttl = 1
+# FIXME: remove from the round-robin load-balancer until its stable
 
-  name = "gateway.lsferreira.net"
-  content = "198.251.90.61"
-  type = "A"
-  proxied = false
-
-  comment = "managed by terraform"
-}
+# resource "cloudflare_dns_record" "gateway_geo_a_lsferreira" {
+#   zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
+#   ttl = 1
+# 
+#   name = "gateway.lsferreira.net"
+#   content = "198.251.90.61"
+#   type = "A"
+#   proxied = false
+# 
+#   comment = "managed by terraform"
+# }
 
 resource "cloudflare_dns_record" "gateway_nc_anx04_1_a_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
