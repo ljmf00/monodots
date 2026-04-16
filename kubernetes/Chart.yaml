@@ -19,7 +19,7 @@ dependencies:
     alias: rss-bridge
   - name: argo-cd
     repository: https://argoproj.github.io/argo-helm
-    version: 9.5.0
+    version: 9.5.1
 
 # A chart can be either an 'application' or a 'library' chart.
 #
