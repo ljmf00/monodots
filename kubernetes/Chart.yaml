@@ -10,6 +10,10 @@ dependencies:
   - name: searxng
     repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
     version: 1.0.1
+  - name: searxng
+    repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
+    version: 1.0.1
+    alias: searxng-staging
   - name: wireguard
     repository: https://bryopsida.github.io/wireguard-chart
     version: 0.29.0
@@ -17,6 +21,10 @@ dependencies:
     repository: https://bjw-s-labs.github.io/helm-charts
     version: 4.6.2
     alias: rss-bridge
+  - name: app-template
+    repository: https://bjw-s-labs.github.io/helm-charts
+    version: 4.6.2
+    alias: rss-bridge-staging
   - name: argo-cd
     repository: https://argoproj.github.io/argo-helm
     version: 9.5.2

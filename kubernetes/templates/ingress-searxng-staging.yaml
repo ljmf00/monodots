@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-searxng
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
+spec:
+  tls:
+  - hosts:
+    - search.staging.lsferreira.net
+    secretName: monodots-searxng-staging-tls
+  rules:
+  - host: search.staging.lsferreira.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: monodots-searxng-staging
+            port:
+              number: 8080
+  ingressClassName: anubis

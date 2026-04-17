@@ -168,3 +168,140 @@ rss-bridge:
       ports:
         http:
           port: 80
+
+####################
+# STAGING 
+####################
+
+searxng-staging:
+  controller:
+    # TODO: increase number of replicas when more nodes are available
+    replicas: 1
+
+    dnsPolicy: None
+    dnsConfig:
+      nameservers:
+        - 8.8.8.8
+        - 1.1.1.1
+      searches:
+        - cluster.local
+
+  persistence:
+    limiter:
+      enabled: false
+      type: configMap
+      name: configmap-searxng-limiter
+      mountPath: /etc/searxng/limiter.toml
+      subPath: limiter.toml
+
+  searxng:
+    config:
+      use_default_settings: true
+
+      ui:
+        static_use_hash: true
+        query_in_title: true
+        infinite_scroll: true
+
+        theme_args:
+          simple_style: dark
+
+      server:
+        image_proxy: true
+        limiter: false
+        method: "GET"
+
+        http_protocol_version: "1.1"
+
+      redis:
+        url: redis://@searxng-redis-master:6379/0
+
+      general:
+        debug: false
+
+      preferences:
+        lock:
+          - autocomplete
+          - favicon
+          - doi_resolver
+
+      outgoing:
+        request_timeout: 5.0
+        max_request_timeout: 15.0
+
+        pool_connections: 512
+        pool_maxsize: 32
+
+      search:
+        autocomplete: "google"
+        favicon_resolver: "duckduckgo"
+        default_lang: "all"
+
+        formats:
+          - html
+          # - json
+          # - csv
+          # - rss
+
+      plugins:
+        searx.plugins.calculator.SXNGPlugin:
+          active: true
+
+        searx.plugins.hash_plugin.SXNGPlugin:
+          active: true
+
+        searx.plugins.self_info.SXNGPlugin:
+          active: true
+
+        searx.plugins.unit_converter.SXNGPlugin:
+          active: true
+
+        searx.plugins.ahmia_filter.SXNGPlugin:
+          active: true
+
+        searx.plugins.hostnames.SXNGPlugin:
+          active: true
+
+        searx.plugins.time_zone.SXNGPlugin:
+          active: true
+
+        searx.plugins.oa_doi_rewrite.SXNGPlugin:
+          active: true
+
+        searx.plugins.tor_check.SXNGPlugin:
+          active: true
+
+        searx.plugins.tracker_url_remover.SXNGPlugin:
+          active: true
+
+  env:
+    BASE_URL: "https://search.lsferreira.net/"
+    AUTOCOMPLETE: "true"
+    TZ: "Europe/Lisbon"
+    GENERATION: "513baadb-fa50-4a7e-83e9-0f3ff2850617"
+
+rss-bridge-staging:
+  global:
+    nameOverride: rss-bridge
+  controllers:
+    main:
+      replicas: 1
+      type: deployment
+      strategy: RollingUpdate
+      rollingUpdate:
+        unavailable: 1
+      containers:
+        main:
+          image:
+            repository: ghcr.io/rss-bridge/rss-bridge
+            tag: latest
+            pullPolicy: Always
+
+          env: {}
+  service:
+    main:
+      controller: main
+      type: ClusterIP
+      ports:
+        http:
+          port: 80

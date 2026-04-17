@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-rss-bridge-staging
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
+spec:
+  tls:
+  - hosts:
+    - rss.staging.lsferreira.net
+    secretName: monodots-rss-bridge-staging-tls
+  rules:
+  - host: rss.staging.lsferreira.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: monodots-rss-bridge-staging
+            port:
+              number: 80
+  ingressClassName: anubis
