@@ -1,7 +1,7 @@
 dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 25.3.10
+  version: 25.3.11
 - name: searxng
   repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
   version: 1.0.1
@@ -20,5 +20,5 @@ dependencies:
 - name: argo-cd
   repository: https://argoproj.github.io/argo-helm
   version: 9.5.2
-digest: sha256:82cba1adf0d2c145ad79926cc18942f89147bbdb8779bd3299cd3edf02cb95f3
-generated: "2026-04-17T23:14:35.231119697+01:00"
+digest: sha256:2715de03fc9ee33402a9f5cf856b563aa01a6ce4ec3eac3d1916e4c5eda99130
+generated: "2026-04-18T02:42:27.08561988Z"
