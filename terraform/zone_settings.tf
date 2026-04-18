@@ -62,7 +62,7 @@ import {
 resource "cloudflare_zone_setting" "lsferreira_net_settings_cache_level" {
   zone_id    = data.cloudflare_zones.lsferreira_net.result[0].id
   setting_id = "cache_level"
-  value      = "basic"
+  value      = "aggressive"
 }
 
 import {
@@ -117,23 +117,12 @@ import {
 resource "cloudflare_zone_setting" "lsferreira_net_settings_min_tls_version" {
   zone_id    = data.cloudflare_zones.lsferreira_net.result[0].id
   setting_id = "min_tls_version"
-  value      = "1.3"
+  value      = "1.1"
 }
 
 import {
   to = cloudflare_zone_setting.lsferreira_net_settings_min_tls_version
   id = "${data.cloudflare_zones.lsferreira_net.result[0].id}/min_tls_version"
-}
-
-resource "cloudflare_zone_setting" "lsferreira_net_settings_opportunistic_encryption" {
-  zone_id    = data.cloudflare_zones.lsferreira_net.result[0].id
-  setting_id = "opportunistic_encryption"
-  value      = "on"
-}
-
-import {
-  to = cloudflare_zone_setting.lsferreira_net_settings_opportunistic_encryption
-  id = "${data.cloudflare_zones.lsferreira_net.result[0].id}/opportunistic_encryption"
 }
 
 resource "cloudflare_zone_setting" "lsferreira_net_settings_opportunistic_onion" {
