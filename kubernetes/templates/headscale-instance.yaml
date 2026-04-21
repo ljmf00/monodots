@@ -1,0 +1,28 @@
+apiVersion: headscale.infrado.cloud/v1beta1
+kind: Headscale
+metadata:
+  name: headscale-instance
+spec:
+  version: "v0.28.0"
+  replicas: 1
+  config:
+    server_url: https://headscale.lsferreira.net
+    listen_addr: 0.0.0.0:8080
+    metrics_listen_addr: 127.0.0.1:9090
+    grpc_listen_addr: 127.0.0.1:50443
+    prefixes:
+      v4: 10.64.0.0/16
+      v6: fd7a:115c:a1e0::/48
+      allocation: sequential
+    
+    database:
+      type: sqlite
+
+    dns:
+      magic_dns: false
+
+  api_key:
+    auto_manage: true        # Automatically create and rotate API keys
+    secret_name: headscale-api-key
+    expiration: "2160h"     # API key expires in 90 days (2160 hours)
+    rotation_buffer: "240h"  # Rotate 10 days (240 hours) before expiration

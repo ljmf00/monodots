@@ -15,6 +15,9 @@ dependencies:
   - name: kube-prometheus-stack
     repository: https://prometheus-community.github.io/helm-charts
     version: 83.5.1
+  - name: headscale-operator
+    repository: oci://ghcr.io/infradohq/headscale-operator/charts
+    version: 0.2.0
 
 # A chart can be either an 'application' or a 'library' chart.
 #

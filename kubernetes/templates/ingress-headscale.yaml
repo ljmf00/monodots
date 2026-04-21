@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-headscale
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
+spec:
+  tls:
+  - hosts:
+    - headscale.lsferreira.net
+    secretName: monodots-headscale-tls
+  rules:
+  - host: headscale.lsferreira.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: headscale
+            port:
+              number: 8080
+  ingressClassName: traefik

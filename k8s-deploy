@@ -17,8 +17,7 @@ kubectl get crd servicemonitors.monitoring.coreos.com >/dev/null 2>&1 || kubectl
 kubectl get crd thanosrulers.monitoring.coreos.com >/dev/null 2>&1 || kubectl apply --server-side -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.82.0/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
 
 helm upgrade --install --namespace kube-system --create-namespace monodots-crd kubernetes-crd
+helm upgrade --install --namespace longhorn-system --create-namespace monodots-longhorn-system kubernetes-longhorn-system
 
-helm upgrade --install --skip-crds --namespace kube-system --create-namespace monodots-system kubernetes-system
-helm upgrade --install --skip-crds --namespace longhorn-system --create-namespace monodots-longhorn-system kubernetes-longhorn-system
-
-helm upgrade --install --skip-crds --create-namespace monodots kubernetes
+helm upgrade --install --namespace kube-system --create-namespace monodots-system kubernetes-system
+helm upgrade --install --skip-crds --namespace default --create-namespace monodots kubernetes
