@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-metrics
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
+spec:
+  tls:
+  - hosts:
+    - metrics.lsferreira.net
+    secretName: monodots-metrics-tls
+  rules:
+  - host: metrics.lsferreira.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: monodots-system-grafana
+            port:
+              number: 80
+  ingressClassName: traefik
