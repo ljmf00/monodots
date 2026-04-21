@@ -160,6 +160,18 @@ resource "cloudflare_dns_record" "inventory_lsferreira" {
   comment = "managed by terraform"
 }
 
+resource "cloudflare_dns_record" "metrics_lsferreira" {
+  zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
+  ttl = 1
+
+  name = "metrics.lsferreira.net"
+  content = "gateway.lsferreira.net"
+  type = "CNAME"
+  proxied = true
+
+  comment = "managed by terraform"
+}
+
 resource "cloudflare_dns_record" "search_lsferreira" {
   zone_id = data.cloudflare_zones.lsferreira_net.result[0].id
   ttl = 1
