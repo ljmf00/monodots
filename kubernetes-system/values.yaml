@@ -7,6 +7,17 @@ secrets-store-csi-driver:
     enabled: true
 
 ingress-anubis:
-  replicaCount: 1
+  replicaCount: 5
   config:
     WRAPPED_INGRESS_CLASS_NAME: "traefik"
+  nodeSelector:
+    node-role.kubernetes.io/gateway: "true"
+
+kube-prometheus-stack:
+  prometheus:
+    prometheusSpec:
+      replicas: 3
+  crds:
+    enabled: true
+    upgradeJob:
+      enabled: true
