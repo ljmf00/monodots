@@ -8,5 +8,8 @@ dependencies:
 - name: ingress-anubis
   repository: oci://ghcr.io/jaredallard/helm-charts
   version: 1.10.3
-digest: sha256:658311e4e067c5a837b002e3fdc6a6877ec170a809b963bc442f1dce1316f128
-generated: "2026-04-10T23:31:54.421628725+01:00"
+- name: kube-prometheus-stack
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 83.5.1
+digest: sha256:3d599fd72f14958b73566f5e7c1980d2a5dd6b474df502fd862b40c185435b52
+generated: "2026-04-21T18:27:43.046583817+01:00"
