@@ -1,6 +1,15 @@
 searxng-redis:
   fullnameOverride: searxng-redis
+
+  # FIXME: fix architecture with replication enabled
+  #architecture: replication
   architecture: standalone
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
   auth:
     enabled: false
 
