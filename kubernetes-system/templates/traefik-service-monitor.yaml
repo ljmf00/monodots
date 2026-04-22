@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: traefik
+  labels:
+    release: monodots-system
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: traefik-kube-system
+      app.kubernetes.io/name: traefik 
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+    - path: /metrics
+      port: metrics
