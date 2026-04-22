@@ -1,0 +1,7 @@
+apiVersion: headscale.infrado.cloud/v1beta1
+kind: HeadscaleUser
+metadata:
+  name: luis
+spec:
+  headscaleRef: headscale-instance
+  username: luis
