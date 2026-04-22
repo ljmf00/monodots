@@ -6,6 +6,8 @@ searxng-redis:
 
   # no need to for persistence for cache nodes
   master:
+    annotations:
+      descheduler.alpha.kubernetes.io/evict: "false"
     persistence:
       enabled: true
 

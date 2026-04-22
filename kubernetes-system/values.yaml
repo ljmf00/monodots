@@ -10,8 +10,24 @@ ingress-anubis:
   replicaCount: 5
   config:
     WRAPPED_INGRESS_CLASS_NAME: "traefik"
+  podAnnotations:
+    descheduler.alpha.kubernetes.io/evict: "false"
   nodeSelector:
     node-role.kubernetes.io/gateway: "true"
+
+descheduler:
+  deschedulerPolicy:
+    profiles:
+      - name: default
+        pluginConfig:
+          - name: DefaultEvictor
+            args:
+              # FIXME: use PodDisruptionBudget
+              minReplicas: 2
+
+              podProtections:
+                extraEnabled:
+                - "PodsWithoutPDB"
 
 kube-prometheus-stack:
   prometheus:
