@@ -100,11 +100,11 @@ searxng:
           - doi_resolver
 
       outgoing:
-        request_timeout: 5.0
-        max_request_timeout: 15.0
+        request_timeout: 3.0
+        max_request_timeout: 9.0
 
-        pool_connections: 512
-        pool_maxsize: 32
+        pool_connections: 100
+        pool_maxsize: 10
 
       search:
         autocomplete: "google"
