@@ -5,7 +5,7 @@ description: A Helm chart for Kubernetes
 dependencies:
   - name: redis
     repository: https://charts.bitnami.com/bitnami
-    version: 25.3.12
+    version: 25.4.0
     alias: searxng-redis
   - name: searxng
     repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
