@@ -13,12 +13,12 @@ dependencies:
   version: 0.31.2
 - name: app-template
   repository: https://bjw-s-labs.github.io/helm-charts
-  version: 4.6.2
+  version: 5.0.0
 - name: app-template
   repository: https://bjw-s-labs.github.io/helm-charts
-  version: 4.6.2
+  version: 5.0.0
 - name: argo-cd
   repository: https://argoproj.github.io/argo-helm
   version: 9.5.12
-digest: sha256:b45baa8f4d07b4d98edb8375b4bf71a215bf80ed492059bacb15c743e28a8852
-generated: "2026-05-08T15:01:36.697688973Z"
+digest: sha256:f9f2623a65b4991dda9b721b2aa491a89891d4a0cbc376a90838c97e7f42b68e
+generated: "2026-05-10T01:15:02.731127117Z"
