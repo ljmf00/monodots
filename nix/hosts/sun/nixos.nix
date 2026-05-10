@@ -24,6 +24,8 @@
 
   nix.settings.system-features = [ "nixos-test" "benchmark" "big-parallel" ];
 
+  boot.supportedFilesystems = [ "btrfs" ];
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/43e72ab1-b5cd-44ac-902f-6d8206a0f99f";
       fsType = "ext4";
