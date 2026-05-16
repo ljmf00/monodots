@@ -5,7 +5,7 @@ description: A Helm chart for Kubernetes
 dependencies:
   - name: cilium
     repository: https://helm.cilium.io/
-    version: 1.19.3
+    version: 1.19.4
 
 # A chart can be either an 'application' or a 'library' chart.
 #
