@@ -5,7 +5,7 @@
     # packages
     nixpkgs.url              = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-nixos.url        = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs2405.url          = "github:nixos/nixpkgs/release-24.05";
+    nixpkgs2405.url          = "github:nixos/nixpkgs/release-25.11";
     nixpkgs-stable.url       = "github:nixos/nixpkgs/release-25.05";
     nixpkgs-staging-next.url = "github:NixOS/nixpkgs/staging-next";
 
