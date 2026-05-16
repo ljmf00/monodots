@@ -10,9 +10,9 @@ dependencies:
   version: 1.10.5
 - name: kube-prometheus-stack
   repository: https://prometheus-community.github.io/helm-charts
-  version: 84.5.0
+  version: 85.1.2
 - name: headscale-operator
   repository: oci://ghcr.io/infradohq/headscale-operator/charts
   version: 0.4.0
-digest: sha256:ce4b4ed0c0b022748bbcedada59896ed6cf3be132384d759e2cefbad3f28d0a1
-generated: "2026-05-05T17:15:28.786386613Z"
+digest: sha256:08d2b27386a6d3901f0cb5259af278d6035383ee77ab10474702603cceffbbce
+generated: "2026-05-16T20:33:37.430144685Z"
