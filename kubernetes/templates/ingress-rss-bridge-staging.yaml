@@ -21,4 +21,4 @@ spec:
             name: monodots-rss-bridge-staging
             port:
               number: 80
-  ingressClassName: anubis
+  ingressClassName: traefik

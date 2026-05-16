@@ -3,10 +3,6 @@ name: monodots
 description: A Helm chart for Kubernetes
 
 dependencies:
-  - name: redis
-    repository: https://charts.bitnami.com/bitnami
-    version: 25.5.2
-    alias: searxng-redis
   - name: searxng
     repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
     version: 1.0.1
