@@ -77,3 +77,7 @@ updates:
     directory: "/docker/archlinux/"
     schedule:
       interval: "daily"
+  - package-ecosystem: "nix"
+    directory: "/"
+    schedule:
+      interval: "daily"
