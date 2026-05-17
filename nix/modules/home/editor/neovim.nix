@@ -86,7 +86,7 @@
       popup-nvim # implement cute popups
       nvim-colorizer-lua # add extra colors to text
       nvim-web-devicons # icons
-      barbar-nvim # buffer line (top)
+      # barbar-nvim # buffer line (top)
       lightline-vim # status line (bottom)
       indent-blankline-nvim # blank lines indentation
 
@@ -185,14 +185,12 @@
       telescope-dap-nvim
       telescope-file-browser-nvim
       telescope-media-files-nvim
-      telescope-fzf-writer-nvim
       telescope-fzf-native-nvim
       telescope-github-nvim
       telescope-live-grep-args-nvim
       telescope-project-nvim
       telescope-symbols-nvim
       telescope-ui-select-nvim
-      telescope-z-nvim
 
       # git integration
       vim-fugitive
