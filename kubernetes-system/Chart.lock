@@ -4,7 +4,7 @@ dependencies:
   version: 5.3.0
 - name: descheduler
   repository: https://kubernetes-sigs.github.io/descheduler
-  version: 0.35.1
+  version: 0.36.0
 - name: ingress-anubis
   repository: oci://ghcr.io/jaredallard/helm-charts
   version: 1.10.5
@@ -14,5 +14,5 @@ dependencies:
 - name: headscale-operator
   repository: oci://ghcr.io/infradohq/headscale-operator/charts
   version: 0.4.0
-digest: sha256:ce4b4ed0c0b022748bbcedada59896ed6cf3be132384d759e2cefbad3f28d0a1
-generated: "2026-05-05T17:15:28.786386613Z"
+digest: sha256:ffcfdede0264b84498cc8f739ff438be3b1684a575cfebf6cdda89d610231781
+generated: "2026-05-20T18:36:29.876951736Z"
