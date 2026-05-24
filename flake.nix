@@ -28,6 +28,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # ik llama fork
+    ik-llama = {
+      url = "github:ikawrakow/ik_llama.cpp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # operating system facilities
     nixos-generators = {
       url = "github:nix-community/nixos-generators";

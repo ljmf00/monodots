@@ -15,10 +15,10 @@
         "pata_hpt366" "pata_hpt37x" "pata_hpt3x2n" "pata_hpt3x3"
         "pata_it8213" "pata_it821x" "pata_jmicron" "pata_marvell"
         "pata_mpiix" "pata_netcell" "pata_ns87410" "pata_oldpiix"
-        "pata_pcmcia" "pata_pdc2027x" "pata_qdi" "pata_rz1000"
+        "pata_pcmcia" "pata_pdc2027x" "pata_rz1000" # "pata_qdi"
         "pata_serverworks" "pata_sil680" "pata_sis"
         "pata_sl82c105" "pata_triflex" "pata_via"
-        "pata_winbond"
+        # "pata_winbond"
     ];
   };
 }
