@@ -247,7 +247,7 @@ in with lib;
 
     settings = {
       healthCheckTimeout = 60;
-      globalTTL = 60;
+      globalTTL = 180;
 
       models = {
         default = {
