@@ -131,6 +131,8 @@ let
       IFS=: read -ra PATH_ARR <<< "''${PATH:-}"
       SANITIZED_PATH=()
 
+      SANITIZED_PATH+=("${pkgs.opencode}/bin")
+
       for p in "''${PATH_ARR[@]}"; do
         [[ -d "$p" ]] || continue
 
@@ -186,6 +188,7 @@ let
         # system runtime
         --ro-bind /etc/resolv.conf /etc/resolv.conf
         --ro-bind /etc/ssl /etc/ssl
+        --ro-bind /etc/static/ssl /etc/static/ssl
         --ro-bind /usr/bin /usr/bin
         --ro-bind /bin /bin
         --ro-bind /lib /lib
