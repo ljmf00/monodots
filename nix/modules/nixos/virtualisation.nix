@@ -9,4 +9,7 @@
   };
 
   environment.systemPackages = [ pkgs.distrobox ];
+
+  # add support for emulating aarch64 containers for docker buildx support
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
