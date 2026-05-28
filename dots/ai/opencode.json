@@ -1,0 +1,119 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "@cortexkit/opencode-magic-context@v0.21.8",
+    "oh-my-openagent@file:/home/luis/.config/opencode/oh-my-opencode"
+  ],
+  "autoupdate": false,
+  "permission": {
+    "edit": "ask",
+    "bash": "ask",
+    "webfetch": "allow",
+    "external_directory": {
+      "*": "ask",
+      "~/.config/opencode/skills/*": "allow"
+    }
+  },
+  "compaction": {
+    "auto": false,
+    "prune": false
+  },
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**"
+    ]
+  },
+  "model": "local-llm/default",
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "model": "local-llm/flash",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      },
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "plan": {
+      "mode": "primary",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "reviewer": {
+      "description": "Reviews code for best practices and potential issues",
+      "mode": "subagent",
+      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
+      "tools": {
+        "write": false,
+        "edit": false
+      }
+    },
+    "debugger": {
+      "description": "Debugs code with issues",
+      "mode": "subagent",
+      "prompt": "You are a code debugger. Focus on debugging the issue and finding the root cause analysis.",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      },
+      "permission": {
+        "edit": "allow",
+        "bash": "ask"
+      }
+    },
+    "document": {
+      "description": "Writes and maintains project documentation",
+      "mode": "subagent",
+      "prompt": "You are a technical writer. Create clear, comprehensive documentation. Focus on: Clear explanations, proper structure, code examples and user-friendly language",
+      "tools": {
+        "write": true,
+        "edit": false,
+        "bash": false
+      }
+    }
+  },
+  "default_agent": "plan",
+  "enabled_providers": [
+    "local-llm",
+    "opencode-go",
+    "opencode"
+  ],
+  "mcp": {
+    // "grep": {
+    //   "type": "remote",
+    //   "url": "https://mcp.grep.app",
+    //   "enabled": true
+    // }
+  },
+  "provider": {
+    "local-llm": {
+      "models": {
+        "default": {
+          "name": "Default (Qwen3.6 27B)",
+          "_launch": true
+        },
+        "flash": {
+          "name": "Flash (Qwen3.6 35B A3B)"
+        },
+        "multimodal": {
+          "name": "Multi Modal (Qwen3.6 27B)"
+        }
+      },
+      "name": "Local",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:8888/v1"
+      }
+    }
+  }
+}
