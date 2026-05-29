@@ -1,16 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-searxng-to-redis
+  name: allow-searxng-to-valkey
 spec:
   podSelector:
-    matchLabels:
-      app.kubernetes.io/name: searxng-redis
+    matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+      - searxng-valkey
+      - searxng-staging-valkey
   ingress:
   - from:
     - podSelector:
         matchLabels:
           app.kubernetes.io/name: searxng
+    ports:
+    - protocol: TCP
+      port: 6379
+  - from:
+    - podSelector:
+        matchLabels:
+          app.kubernetes.io/name: searxng-staging
     ports:
     - protocol: TCP
       port: 6379

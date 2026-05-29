@@ -1,10 +1,4 @@
 dependencies:
-- name: searxng
-  repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
-  version: 1.0.1
-- name: searxng
-  repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
-  version: 1.0.1
 - name: wireguard
   repository: https://bryopsida.github.io/wireguard-chart
   version: 0.31.2
@@ -17,5 +11,5 @@ dependencies:
 - name: argo-cd
   repository: https://argoproj.github.io/argo-helm
   version: 9.5.12
-digest: sha256:cea1ce004fbea1106512b5a9546c23ae9ca3c356c436ef3cc254b947b63b42b4
-generated: "2026-05-10T03:27:19.288733839+01:00"
+digest: sha256:54a515a849d1f4e5f1a8096a2926c7b8c4ebbe6f5525ce8632dfa3077a51d8bd
+generated: "2026-05-29T03:35:48.577064502+01:00"

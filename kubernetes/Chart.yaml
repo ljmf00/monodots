@@ -3,13 +3,6 @@ name: monodots
 description: A Helm chart for Kubernetes
 
 dependencies:
-  - name: searxng
-    repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
-    version: 1.0.1
-  - name: searxng
-    repository: https://raw.githubusercontent.com/searxng/searxng-helm-chart/refs/heads/gh-pages
-    version: 1.0.1
-    alias: searxng-staging
   - name: wireguard
     repository: https://bryopsida.github.io/wireguard-chart
     version: 0.31.2
