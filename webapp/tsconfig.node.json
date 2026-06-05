@@ -1,13 +1,17 @@
 {
-  "extends": [
-    "@tsconfig/node18/tsconfig.json"
-  ],
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": [".vitepress/config.ts"]
+  "extends": [
+    "@tsconfig/node18/tsconfig.json"
+  ],
+  "include": [
+    ".vitepress/config.ts"
+  ]
 }
