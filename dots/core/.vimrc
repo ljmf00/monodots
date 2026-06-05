@@ -405,4 +405,22 @@ if v:version >= 701
   endif
 endif
 
+function! MkdirRun() abort
+  let l:dir = expand('<afile>:p:h')
+
+  " Handle netrw URLs (see :help netrw-transparent)
+  if l:dir =~# '^\l\+://'
+    return
+  endif
+
+  if !isdirectory(l:dir)
+    call mkdir(l:dir, 'p')
+  endif
+endfunction
+
+augroup MkdirRun
+  autocmd!
+  autocmd BufWritePre * call MkdirRun()
+augroup END
+
 " vim:set ft=vim et sw=2:
