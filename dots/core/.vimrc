@@ -1,6 +1,11 @@
 " Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Enable encoding
+if has('nvim')
+  set encoding=utf-8
+endif
+
 " fancy colors
 set termguicolors
 
@@ -61,9 +66,14 @@ set ttyfast
 
 " Make the escape key more responsive by decreasing the wait time for an
 " escape sequence (e.g., arrow keys).
-if !has('nvim') && &ttimeoutlen == -1
-  set ttimeout
-  set ttimeoutlen=100
+if has('nvim')
+  set timeout
+  set timeoutlen=500
+else
+  if &ttimeoutlen == -1
+    set ttimeout
+    set ttimeoutlen=100
+  endif
 endif
 
 if has('reltime')
@@ -89,7 +99,22 @@ set sidescrolloff=2
 
 " whitespace rendering
 set list
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+
+if has('nvim')
+  set listchars=tab:→\ ,extends:❯,precedes:❮,trail:·,nbsp:·,space:·
+  set showbreak=↪
+else
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+
+# Hidden buffers and mode
+if has('nvim')
+  " Hidden buffers
+  set hidden
+
+  " Hidden mode
+  set noshowmode
+endif
 
 " session related settings
 
