@@ -22,9 +22,8 @@
 
         npmRoot = "tools/ui";
         npmDepsHash = "sha256-Iyg8FpcTKf2UYHuK7mA3cTAqVaLcQPcS0YCa5Qf01Gc=";
-    })).override { 
+    })).override {
         vulkanSupport = true;
         cudaSupport = true;
     };
 })
-

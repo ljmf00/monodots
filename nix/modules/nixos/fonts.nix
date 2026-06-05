@@ -34,7 +34,7 @@
   ];
 
   # console settings
-  
+
   # Setting console font breaks the virtual console
   #console.packages = with pkgs; [ terminus_font ];
   #console.font = "Lat2-Terminus16";

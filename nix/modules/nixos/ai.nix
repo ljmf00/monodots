@@ -203,7 +203,7 @@ let
       # -----------------------------
       for p in "''${SANITIZED_PATH[@]}"; do
         for a in "''${ALLOW[@]:-}"; do
-          if [[ "$p" == "$a"* ]]; then 
+          if [[ "$p" == "$a"* ]]; then
             continue 2
           fi
         done
@@ -234,7 +234,7 @@ let
 
       if [[ "$INTERACTIVE" == "1" ]]; then
         exec "''${BWRAP[@]}" bash
-      else 
+      else
         exec "''${BWRAP[@]}" "$REAL" "''${ARGS[@]}"
       fi
       EOF

@@ -187,7 +187,7 @@ if has('clipboard')
   set clipboard=
 endif
 
-" Clipboard keymaps 
+" Clipboard keymaps
 nnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 nnoremap <leader>p "+p

@@ -4,7 +4,7 @@ let
 in with lib;
 {
   services.flatpak.enable = true;
-  
+
   environment.systemPackages = with pkgs;
     [
       busybox

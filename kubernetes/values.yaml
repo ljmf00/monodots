@@ -176,7 +176,7 @@ rss-bridge:
           port: 80
 
 ####################
-# STAGING 
+# STAGING
 ####################
 
 searxng-staging:

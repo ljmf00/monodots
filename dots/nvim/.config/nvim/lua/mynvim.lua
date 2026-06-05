@@ -13,7 +13,7 @@ M.load = function()
   vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)
       local ft = vim.bo[args.buf].filetype
-  
+
       local ok, lang = pcall(vim.treesitter.language.get_lang, ft)
       if ok and lang then
         pcall(vim.treesitter.start, args.buf)

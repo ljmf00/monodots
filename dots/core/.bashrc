@@ -30,6 +30,11 @@ if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo/bin" ]; then
+    # Add .cargo/bin/ to PATH
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 if [ -d "$HOME/.local/share/dotfiles/busybox/bin" ]; then
     # Add busybox tools
     export PATH="$PATH:$HOME/.local/share/dotfiles/busybox/bin"
