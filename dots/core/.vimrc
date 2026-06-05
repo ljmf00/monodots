@@ -17,11 +17,6 @@ endif
 " add mouse support
 set mouse=a
 
-" clipboard support
-if has('clipboard')
-  set clipboard+=unnamedplus
-endif
-
 " Completion settings
 set completeopt=menuone,noselect,longest
 
@@ -161,6 +156,19 @@ inoremap <C-W> <C-G>u<C-W>
 " Smart Home key
 noremap  <expr> <Home> col('.') == match(getline('.'), '\S') + 1 ? "\<Home>" : "^"
 inoremap <expr> <Home> col('.') == match(getline('.'), '\S') + 1 ? "\<Home>" : "\<C-O>^"
+
+" Clipboard support (explicit via keybinds)
+if has('clipboard')
+  set clipboard=
+endif
+
+" Clipboard keymaps 
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
 
 " Obsession
 " From: Tim Pope <http://tpo.pe/>
