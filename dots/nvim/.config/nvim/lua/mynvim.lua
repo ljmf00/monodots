@@ -301,7 +301,6 @@ M.load = function()
 
         lspc.vimls.setup({ capabilities = capabilities })
         lspc.clangd.setup({ capabilities = capabilities })
-        lspc.tsserver.setup({ capabilities = capabilities })
         lspc.serve_d.setup({ capabilities = capabilities })
         lspc.jedi_language_server.setup({ capabilities = capabilities })
       end,
