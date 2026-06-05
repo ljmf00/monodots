@@ -13,6 +13,10 @@ repos:
       - id: check-builtin-literals
       - id: check-case-conflict
       - id: check-json
+        exclude: >
+          (?x)^(
+            ^dots/ai/.*|
+          )$
       - id: check-yaml
         exclude: >
           (?x)^(
