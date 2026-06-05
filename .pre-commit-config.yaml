@@ -2,21 +2,34 @@
 
 fail_fast: true
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  - repo: builtin
     hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: mixed-line-ending
-      - id: fix-byte-order-marker
-      - id: check-merge-conflict
-      - id: check-builtin-literals
+      - id: check-added-large-files
       - id: check-case-conflict
+      - id: check-executables-have-shebangs
+        exclude: >
+          (?x)^(
+            .*\.desktop|
+          )$
+      - id: check-illegal-windows-names
       - id: check-json
         exclude: >
           (?x)^(
             ^dots/ai/.*|
           )$
+      - id: check-json5
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+        exclude: '^.*\.j2$|^docker/archlinux/amd64/makepkg.conf$'
+      - id: check-symlinks
+        exclude: >
+          (?x)^(
+            dots/nvim/.config/nvim/colors|
+            dots/nvim/.config/nvim/autoload|
+          )$
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
       - id: check-yaml
         exclude: >
           (?x)^(
@@ -24,28 +37,30 @@ repos:
             ^deploy/ansible/host_vars/tortoise/tor\.yml|
             ^deploy/ansible/host_vars/trex/wireless\.yml|
           )$
-      - id: sort-simple-yaml
-      - id: check-xml
-      - id: check-ast
-      - id: check-executables-have-shebangs
-        exclude: >
-          (?x)^(
-            .*\.desktop|
-          )$
-      - id: check-shebang-scripts-are-executable
-        exclude: '^.*\.j2$|^docker/archlinux/amd64/makepkg.conf$'
-      - id: check-toml
-      - id: check-added-large-files
-      - id: check-symlinks
-        exclude: >
-          (?x)^(
-            dots/nvim/.config/nvim/colors|
-            dots/nvim/.config/nvim/autoload|
-          )$
       - id: destroyed-symlinks
       - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: file-contents-sorter
+      - id: fix-byte-order-marker
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
       - id: no-commit-to-branch
         args: [--branch, master]
+      - id: pretty-format-json
+        exclude: >
+          (?x)^(
+            ^dots/ai/.*|
+          )$
+        args: [--autofix]
+      - id: trailing-whitespace
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: check-builtin-literals
+      - id: sort-simple-yaml
+      - id: check-ast
       - id: requirements-txt-fixer
   - repo: https://github.com/pre-commit-ci/pre-commit-ci-config
     rev: v1.6.1
