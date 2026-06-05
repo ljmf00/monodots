@@ -54,7 +54,7 @@ function main()
   )
 
   if [ "$(readlink -f "$DOTFILES_FOLDER/../")" != "$(readlink -f "$HOME")" ]; then
-    ln -sf "$DOTFILES_FOLDER" "$HOME/dotfiles"
+    ln -sf "$DOTFILES_FOLDER" "$HOME/monodots"
   fi
 
   rsync -avlK \
