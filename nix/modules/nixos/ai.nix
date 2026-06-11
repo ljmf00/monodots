@@ -250,7 +250,10 @@ in with lib;
 
     settings = {
       healthCheckTimeout = 60;
-      globalTTL = 180;
+      globalTTL = 500;
+      performance = {
+        enable = true;
+      };
 
       models = {
         default = {
@@ -266,9 +269,7 @@ in with lib;
               --cache-type-k-draft q8_0 \
               --cache-type-v-draft q8_0 \
               --context-shift auto \
-              --multi-token-prediction \
-              --draft-p-min 0.75 \
-              --draft-max 3 \
+              --spec-type mtp:n_max=3,p_min=0.75 \
               --flash-attn on \
               --threads 16 \
               --reasoning-budget 32768 \
@@ -319,9 +320,7 @@ in with lib;
               --cache-type-k-draft q8_0 \
               --cache-type-v-draft q8_0 \
               --context-shift auto \
-              --multi-token-prediction \
-              --draft-p-min 0.75 \
-              --draft-max 3 \
+              --spec-type mtp:n_max=3,p_min=0.75 \
               --flash-attn on \
               --threads 16 \
               --reasoning-budget 32768 \
