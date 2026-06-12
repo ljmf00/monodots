@@ -147,7 +147,7 @@ searxng:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "613baadb-fa50-4a7e-83e9-0f3ff2850617"
+    GENERATION: "dc423b7c-af4f-43c7-89f0-525035c44a8c"
 
 rss-bridge:
   global:
