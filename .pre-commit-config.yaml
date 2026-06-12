@@ -20,7 +20,7 @@ repos:
       - id: check-json5
       - id: check-merge-conflict
       - id: check-shebang-scripts-are-executable
-        exclude: '^.*\.j2$|^docker/archlinux/amd64/makepkg.conf$'
+        exclude: '^.*\.j2$|^containers/archlinux/amd64/makepkg.conf$'
       - id: check-symlinks
         exclude: >
           (?x)^(

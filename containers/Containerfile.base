@@ -1,0 +1,102 @@
+ARG TARGETARCH
+ARG BUILDARCH=$TARGETARCH
+
+FROM --platform=$BUILDPLATFORM scratch as stage0
+ARG BUILDARCH
+
+# hadolint ignore=DL3022
+COPY --from=busybox-${BUILDARCH} /bin/busybox /bin/busybox
+
+RUN --network=none ["/bin/busybox", "ln", "-s", "/bin/busybox", "/bin/sh"]
+
+# Bootstrap filesystem rootfs
+RUN --network=none                                                        : && \
+    busybox mkdir -m 0755 /rootfs/                                          && \
+    busybox mkdir -m 0755 /rootfs/var                                       && \
+    busybox mkdir -m 0755 /rootfs/var/log                                   && \
+    busybox mkdir -m 0755 /rootfs/var/empty                                 && \
+    busybox mkdir -m 0755 /rootfs/var/db                                    && \
+    busybox mkdir -m 0755 /rootfs/var/opt                                   && \
+    busybox mkdir -m 1777 /rootfs/var/tmp                                   && \
+    busybox mkdir -m 0755 /rootfs/var/local                                 && \
+    busybox mkdir -m 0755 /rootfs/var/lib                                   && \
+    busybox mkdir -m 0755 /rootfs/var/cache                                 && \
+    busybox mkdir -m 0755 /rootfs/var/spool                                 && \
+    busybox mkdir -m 0755 /rootfs/var/spool/mail                            && \
+    busybox ln -s ../run /rootfs/var/run                                    && \
+    busybox ln -s spool/mail /rootfs/var/mail                               && \
+    busybox ln -s ../run/lock /rootfs/var/lock                              && \
+    busybox mkdir -m 0755 /rootfs/usr                                       && \
+    busybox mkdir -m 0755 /rootfs/usr/bin                                   && \
+    busybox ln -s bin /rootfs/usr/sbin                                      && \
+    busybox mkdir -m 0755 /rootfs/usr/lib                                   && \
+    busybox mkdir -m 0755 /rootfs/usr/local                                 && \
+    busybox mkdir -m 0755 /rootfs/usr/local/etc                             && \
+    busybox mkdir -m 0755 /rootfs/usr/local/bin                             && \
+    busybox mkdir -m 0755 /rootfs/usr/local/share                           && \
+    busybox mkdir -m 0755 /rootfs/usr/local/include                         && \
+    busybox mkdir -m 0755 /rootfs/usr/local/src                             && \
+    busybox mkdir -m 0755 /rootfs/usr/share                                 && \
+    busybox mkdir -m 0755 /rootfs/usr/include                               && \
+    busybox mkdir -m 0755 /rootfs/usr/src                                   && \
+    busybox ln -s usr/bin /rootfs/bin                                       && \
+    busybox ln -s usr/bin /rootfs/sbin                                      && \
+    busybox ln -s usr/lib /rootfs/lib                                       && \
+    busybox mkdir -m 0755 /rootfs/etc                                       && \
+    busybox ln -s ../proc/self/mounts /rootfs/etc/mtab                      && \
+    busybox mkdir -m 0755 /rootfs/dev                                       && \
+    busybox mkdir -m 0755 /rootfs/run                                       && \
+    busybox mkdir -m 0755 /rootfs/boot                                      && \
+    busybox mkdir -m 0755 /rootfs/run/lock                                  && \
+    busybox mkdir -m 1777 /rootfs/tmp                                       && \
+    busybox mkdir -m 0555 /rootfs/sys                                       && \
+    busybox mkdir -m 0555 /rootfs/proc                                      && \
+    busybox mkdir -m 0700 /rootfs/root                                      && \
+    :
+
+FROM stage0 as busybox-builder
+
+COPY --from=stage0 /rootfs /
+WORKDIR /root
+
+COPY --from=stage0 /bin/busybox /usr/bin/busybox
+
+RUN --network=none ["/usr/bin/busybox", "--install", "/usr/bin"]
+
+FROM --platform=$TARGETPLATFORM scratch as barebone
+
+COPY --from=stage0 /rootfs /
+WORKDIR /root
+
+FROM barebone as busybox
+ARG TARGETARCH
+
+# hadolint ignore=DL3022
+COPY --from=busybox-${TARGETARCH} /bin/busybox /usr/bin/busybox
+RUN --network=none ["/usr/bin/busybox", "--install", "-s", "/usr/bin"]
+
+FROM busybox-builder AS alpine-stage0
+
+ENV ALPINE_VERSION=3.24
+
+FROM alpine-stage0 AS alpine-dl-amd64
+
+RUN wget -nv "https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/releases/x86_64/alpine-minirootfs-$ALPINE_VERSION.0-x86_64.tar.gz" && \
+    wget -nv "https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/releases/x86_64/alpine-minirootfs-$ALPINE_VERSION.0-x86_64.tar.gz.sha256" && \
+    sha256sum -c "alpine-minirootfs-$ALPINE_VERSION.0-x86_64.tar.gz.sha256" && \
+    rm -rf /rootfs && mkdir -p /rootfs && \
+    tar -xzf "alpine-minirootfs-$ALPINE_VERSION.0-x86_64.tar.gz" -C /rootfs
+
+FROM alpine-stage0 AS alpine-dl-arm64
+
+RUN wget -nv "https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/releases/aarch64/alpine-minirootfs-$ALPINE_VERSION.0-aarch64.tar.gz" && \
+    wget -nv "https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/releases/aarch64/alpine-minirootfs-$ALPINE_VERSION.0-aarch64.tar.gz.sha256" && \
+    sha256sum -c "alpine-minirootfs-$ALPINE_VERSION.0-aarch64.tar.gz.sha256" && \
+    rm -rf /rootfs && mkdir -p /rootfs && \
+    tar -xzf "alpine-minirootfs-$ALPINE_VERSION.0-aarch64.tar.gz" -C /rootfs
+
+FROM --platform=$TARGETPLATFORM scratch as alpine
+ARG TARGETARCH
+
+# hadolint ignore=DL3022
+COPY --from=alpine-dl-${TARGETARCH} /rootfs /
