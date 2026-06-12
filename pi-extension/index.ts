@@ -4,22 +4,22 @@ import type { AssistantMessage, TextContent } from "@earendil-works/pi-ai";
 import { SandboxManager, type SandboxRuntimeConfig } from "@anthropic-ai/sandbox-runtime";
 
 import {
-	matchesKey, 
+	matchesKey,
 	truncateToWidth,
-	Key, 
-	Text, 
+	Key,
+	Text,
 	Editor,
-	Container,  
+	Container,
 	SettingsList,
 
 	type SettingItem,
 	type EditorTheme,
 } from "@earendil-works/pi-tui";
 import {
-	CustomEditor, 
+	CustomEditor,
 
-	type ExtensionAPI, 
-	type ExtensionContext, 
+	type ExtensionAPI,
+	type ExtensionContext,
 	type ProjectTrustEventResult,
 	type ToolInfo,
 
@@ -1260,7 +1260,7 @@ After completing a step, include a [DONE:n] tag in your response.`,
 	////////////////////////
 	// Questionnaire tool //
 	////////////////////////
-	
+
 	pi.registerTool({
 		name: "questionnaire",
 		label: "Questionnaire",
