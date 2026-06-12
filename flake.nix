@@ -180,5 +180,23 @@
           ./nix/hosts/${defaultHostname}/home.nix
         ];
       };
+
+      devShells."x86_64-linux"."default" =
+        import ./nix/devshell/fhs-env.nix { pkgs = import inputs.nixpkgs { system = "x86_64-linux"; }; };
+      devShells."aarch64-linux"."default" =
+        import ./nix/devshell/fhs-env.nix { pkgs = import inputs.nixpkgs { system = "aarch64-linux"; }; };
+      devShells."x86_64-darwin"."default" =
+        import ./nix/devshell/fhs-env.nix { pkgs = import inputs.nixpkgs { system = "x86_64-darwin"; }; };
+      devShells."aarch64-darwin"."default" =
+        import ./nix/devshell/fhs-env.nix { pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; }; };
+
+      packages."x86_64-linux"."monodots-dev" =
+        import ./nix/devshell/default.nix { pkgs = import inputs.nixpkgs { system = "x86_64-linux"; }; inherit inputs; };
+      packages."aarch64-linux"."monodots-dev" =
+        import ./nix/devshell/default.nix { pkgs = import inputs.nixpkgs { system = "aarch64-linux"; }; inherit inputs; };
+      packages."x86_64-darwin"."monodots-dev" =
+        import ./nix/devshell/default.nix { pkgs = import inputs.nixpkgs { system = "x86_64-darwin"; }; inherit inputs; };
+      packages."aarch64-darwin"."monodots-dev" =
+        import ./nix/devshell/default.nix { pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; }; inherit inputs; };
     };
 }
