@@ -73,6 +73,12 @@ updates:
       interval: "daily"
     allow:
       - dependency-type: "all"
+  - package-ecosystem: "npm"
+    directory: "/pi-extension"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
   - package-ecosystem: "docker"
     directory: "/docker/archlinux/"
     schedule:
