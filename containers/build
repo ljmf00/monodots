@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# set safe failures
+set -euxo pipefail
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  CONTAINERS_BUILD_FOLDER="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$CONTAINERS_BUILD_FOLDER/$SOURCE"
+done
+CONTAINERS_BUILD_FOLDER="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+unset SOURCE
+
+echo "$CONTAINERS_BUILD_FOLDER"
+
+BUSYBOX_AMD64_PATH="$(nix build "$CONTAINERS_BUILD_FOLDER/..#packages.x86_64-linux.busybox" --print-out-paths)"
+BUSYBOX_ARM64_PATH="$(nix build "$CONTAINERS_BUILD_FOLDER/..#packages.aarch64-linux.busybox" --print-out-paths)"
+
+# Barebones bootstrapped from minimal busybox setup
+podman build --platform linux/amd64,linux/arm64 \
+  --build-context busybox-amd64="$BUSYBOX_AMD64_PATH" \
+  --build-context busybox-arm64="$BUSYBOX_ARM64_PATH" \
+  -f Containerfile.base --target barebone --squash-all -t monodots/barebone .
+
+# Busybox
+podman build --platform linux/amd64,linux/arm64 \
+  --build-context busybox-amd64="$BUSYBOX_AMD64_PATH" \
+  --build-context busybox-arm64="$BUSYBOX_ARM64_PATH" \
+  -f Containerfile.base --target busybox --squash-all -t monodots/busybox .
+
+# Alpine bootstrapped from Busybox
+podman build --platform linux/amd64,linux/arm64 \
+  --build-context busybox-amd64="$BUSYBOX_AMD64_PATH" \
+  --build-context busybox-arm64="$BUSYBOX_ARM64_PATH" \
+  -f Containerfile.base --target alpine --squash-all -t monodots/alpine .
+
+podman build --platform linux/amd64,linux/arm64 \
+  -f archlinux/Containerfile --squash-all -t monodots/archlinux archlinux

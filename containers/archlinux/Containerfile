@@ -1,67 +1,5 @@
 # syntax=docker/dockerfile:1.4
 
-ARG BUILDPLATFORM=$BUILDPLATFORM
-ARG BUILDOS=$BUILDOS
-ARG BUILDARCH=$BUILDARCH
-ARG BUILDVARIANT=$BUILDVARIANT
-
-ARG TARGETPLATFORM=$TARGETPLATFORM
-ARG TARGETOS=$TARGETOS
-ARG TARGETARCH=$TARGETARCH
-ARG TARGETVARIANT=$TARGETVARIANT
-
-# hadolint ignore=DL3007
-FROM --platform=$BUILDPLATFORM public.ecr.aws/docker/library/busybox:latest AS fhs-stage0
-
-# Bootstrap filesystem rootfs
-RUN --network=none                                                       : && \
-    mkdir -m 0755 /rootfs/                                                 && \
-    mkdir -m 0755 /rootfs/var                                              && \
-    mkdir -m 0755 /rootfs/var/log                                          && \
-    mkdir -m 0755 /rootfs/var/empty                                        && \
-    mkdir -m 0755 /rootfs/var/db                                           && \
-    mkdir -m 0755 /rootfs/var/opt                                          && \
-    mkdir -m 1777 /rootfs/var/tmp                                          && \
-    mkdir -m 0755 /rootfs/var/local                                        && \
-    mkdir -m 0755 /rootfs/var/lib                                          && \
-    mkdir -m 0755 /rootfs/var/cache                                        && \
-    mkdir -m 0755 /rootfs/var/spool                                        && \
-    mkdir -m 0755 /rootfs/var/spool/mail                                   && \
-    ln -s ../run /rootfs/var/run                                           && \
-    ln -s spool/mail /rootfs/var/mail                                      && \
-    ln -s ../run/lock /rootfs/var/lock                                     && \
-    mkdir -m 0755 /rootfs/usr                                              && \
-    mkdir -m 0755 /rootfs/usr/bin                                          && \
-    ln -s bin /rootfs/usr/sbin                                             && \
-    mkdir -m 0755 /rootfs/usr/lib                                          && \
-    mkdir -m 0755 /rootfs/usr/local                                        && \
-    mkdir -m 0755 /rootfs/usr/local/etc                                    && \
-    mkdir -m 0755 /rootfs/usr/local/bin                                    && \
-    mkdir -m 0755 /rootfs/usr/local/share                                  && \
-    mkdir -m 0755 /rootfs/usr/local/include                                && \
-    mkdir -m 0755 /rootfs/usr/local/src                                    && \
-    mkdir -m 0755 /rootfs/usr/share                                        && \
-    mkdir -m 0755 /rootfs/usr/include                                      && \
-    mkdir -m 0755 /rootfs/usr/src                                          && \
-    ln -s usr/bin /rootfs/bin                                              && \
-    ln -s usr/bin /rootfs/sbin                                             && \
-    ln -s usr/lib /rootfs/lib                                              && \
-    mkdir -m 0755 /rootfs/etc                                              && \
-    ln -s ../proc/self/mounts /rootfs/etc/mtab                             && \
-    mkdir -m 0755 /rootfs/dev                                              && \
-    mkdir -m 0755 /rootfs/run                                              && \
-    mkdir -m 0755 /rootfs/boot                                             && \
-    mkdir -m 0755 /rootfs/run/lock                                         && \
-    mkdir -m 1777 /rootfs/tmp                                              && \
-    mkdir -m 0555 /rootfs/sys                                              && \
-    mkdir -m 0555 /rootfs/proc                                             && \
-    mkdir -m 0700 /rootfs/root                                             && \
-    :
-
-FROM --platform=$TARGETPLATFORM scratch AS fhs
-
-COPY --from=fhs-stage0 /rootfs/ /
-
 # -----------------------------------------------------------------------------
 # PLATFORM STAGE: AMD64 (x86_64)
 # -----------------------------------------------------------------------------
@@ -82,7 +20,7 @@ COPY --link ./amd64/makepkg.conf /etc/makepkg.conf
 # PLATFORM STAGE: ARM/v7 (armv7)
 # -----------------------------------------------------------------------------
 # hadolint ignore=DL3007
-FROM --platform=$BUILDPLATFORM public.ecr.aws/docker/library/alpine:latest AS bootstrap0-archlinux-armv7
+FROM --platform=$BUILDPLATFORM monodots/alpine:latest AS bootstrap0-archlinux-armv7
 
 # Install curl bash and update CA certificates
 # hadolint ignore=DL3018
@@ -115,7 +53,7 @@ RUN rm -rf /boot/*
 # PLATFORM STAGE: ARM64/v8 (aarch64)
 # -----------------------------------------------------------------------------
 # hadolint ignore=DL3007
-FROM --platform=$BUILDPLATFORM public.ecr.aws/docker/library/alpine:latest AS bootstrap0-archlinux-arm64
+FROM --platform=$BUILDPLATFORM monodots/alpine:latest AS bootstrap0-archlinux-arm64
 
 # Install curl bash and update CA certificates
 # hadolint ignore=DL3018
@@ -167,7 +105,7 @@ COPY --link ./generic/pacman-nosig.conf /etc/pacman.conf
 RUN echo "$PACMAN_MIRRORLIST" > /etc/pacman.d/mirrorlist
 
 RUN mkdir -m 0755 /rootfs/
-COPY --from=fhs / /rootfs/
+COPY --from=monodots/barebone:latest / /rootfs/
 
 # Bootstrap needed pacman folders
 RUN --network=none                                                       : && \
@@ -278,7 +216,7 @@ RUN apk add --no-cache pacman busybox && \
     :
 
 RUN mkdir -m 0755 /rootfs/
-COPY --from=fhs / /rootfs/
+COPY --from=monodots/barebone:latest / /rootfs/
 
 # Bootstrap needed pacman folders
 RUN --network=none                                                       : && \
