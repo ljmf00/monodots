@@ -198,5 +198,8 @@
         import ./nix/devshell/default.nix { pkgs = import inputs.nixpkgs { system = "x86_64-darwin"; }; inherit inputs; };
       packages."aarch64-darwin"."monodots-dev" =
         import ./nix/devshell/default.nix { pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; }; inherit inputs; };
+
+      packages."x86_64-linux"."busybox" = (import inputs.nixpkgs-stable { system = "x86_64-linux"; }).pkgsStatic.busybox;
+      packages."aarch64-linux"."busybox" = (import inputs.nixpkgs-stable { system = "aarch64-linux"; }).pkgsStatic.busybox;
     };
 }
