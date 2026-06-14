@@ -13,6 +13,10 @@ let
     gnused
     gnugrep
     gawk
+    opencode
+    nodejs
+    bun
+    pi-coding-agent
   ];
 
 in
