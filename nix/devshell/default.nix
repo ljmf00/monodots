@@ -315,13 +315,28 @@ pkgs.stdenv.mkDerivation {
       exit 0
     fi
 
+    PASSWD_FILE=$(mktemp /tmp/monodots-passwd-XXXXXX)
+    GROUP_FILE=$(mktemp /tmp/monodots-group-XXXXXX)
+    SHADOW_FILE=$(mktemp /tmp/monodots-shadow-XXXXXX)
+    trap "rm -f '$PASSWD_FILE' '$GROUP_FILE' '$SHADOW_FILE'" EXIT
+
+    echo "root:x:0:0:root:/root:/bin/bash" > "$PASSWD_FILE"
+    echo "''${USER:-user}:x:$(id -u):$(id -g)::''${HOME:-/home/user}:/bin/bash" >> "$PASSWD_FILE"
+
+    echo "root:x:0:" > "$GROUP_FILE"
+    echo "$(id -gn):x:$(id -g):" >> "$GROUP_FILE"
+
+    echo "root:!:19647:0:99999:7:::" > "$SHADOW_FILE"
+    echo "''${USER:-user}:!:19647:0:99999:7:::" >> "$SHADOW_FILE"
+
     OS="$(uname -s)"
 
     if [[ "$OS" == "Linux" ]]; then
       if [[ "$NOSANDBOX" -eq 1 ]]; then
         exec "$FHS_ENV"
       else
-        build_bwrap_args ALLOW ALLOW_RO DENY "$NETWORK" "$SESSION_HOME" "$DEFAULT_CWD" "$NOSANDBOX"
+        build_bwrap_args ALLOW ALLOW_RO DENY "$NETWORK" "$SESSION_HOME" "$DEFAULT_CWD" "$NOSANDBOX" \
+          "$PASSWD_FILE" "$GROUP_FILE" "$SHADOW_FILE"
         exec "''${BWRAP_ARGS[@]}" "$FHS_ENV"
       fi
     elif [[ "$OS" == "Darwin" ]]; then
