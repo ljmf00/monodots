@@ -17,6 +17,9 @@ build_bwrap_args() {
   local session_home=$5
   local default_cwd=$6
   local no_sandbox=$7
+  local passwd_file=$8
+  local group_file=$9
+  local shadow_file=${10}
 
   if [[ "$no_sandbox" == "1" ]]; then
     echo "NO_SANDBOX"
@@ -49,6 +52,9 @@ build_bwrap_args() {
 
   args+=(--ro-bind /nix/store /nix/store)
   args+=(--ro-bind /etc/resolv.conf /etc/resolv.conf)
+  args+=(--ro-bind "$passwd_file" /etc/passwd)
+  args+=(--ro-bind "$group_file" /etc/group)
+  args+=(--ro-bind "$shadow_file" /etc/shadow)
   args+=(--proc /proc)
   args+=(--dev /dev)
 
