@@ -7,7 +7,7 @@ dependencies:
   version: 1.0.1
 - name: wireguard
   repository: https://bryopsida.github.io/wireguard-chart
-  version: 0.31.2
+  version: 0.32.0
 - name: app-template
   repository: https://bjw-s-labs.github.io/helm-charts
   version: 4.6.2
@@ -17,5 +17,5 @@ dependencies:
 - name: argo-cd
   repository: https://argoproj.github.io/argo-helm
   version: 9.5.12
-digest: sha256:cea1ce004fbea1106512b5a9546c23ae9ca3c356c436ef3cc254b947b63b42b4
-generated: "2026-05-10T03:27:19.288733839+01:00"
+digest: sha256:4920ec6217b1ea997cce424e6304e1ebbc146d9cb4235ff5c0880aaaa6d661ec
+generated: "2026-06-17T12:44:08.644300658Z"
