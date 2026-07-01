@@ -10,9 +10,9 @@
         "opencode-go/deepseek-v4-flash",
         "opencode-go/deepseek-v4-flash-free",
         "opencode/deepseek-v4-flash-free",
-        "local-llm/flash",
-        "local-llm/default",
-        "local-llm/multimodal"
+        // "local-llm/flash",
+        // "local-llm/default",
+        // "local-llm/multimodal",
     ]
   }
 }

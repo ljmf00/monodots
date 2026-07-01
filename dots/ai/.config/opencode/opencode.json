@@ -1,10 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "superpowers@git+https://github.com/obra/superpowers.git",
-    "@cortexkit/opencode-magic-context@v0.21.8",
-    "oh-my-openagent@file:/home/luis/.config/opencode/oh-my-opencode"
-  ],
   "autoupdate": false,
   "permission": {
     "edit": "ask",
@@ -26,11 +21,13 @@
       ".git/**"
     ]
   },
-  "model": "local-llm/default",
+  // "model": "local-llm/default",
+  "model": "opencode-go/deepseek-v4-flash",
   "agent": {
     "build": {
       "mode": "primary",
-      "model": "local-llm/flash",
+      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "local-llm/flash",
       "tools": {
         "write": true,
         "edit": true,
@@ -89,11 +86,11 @@
     "opencode"
   ],
   "mcp": {
-    // "grep": {
-    //   "type": "remote",
-    //   "url": "https://mcp.grep.app",
-    //   "enabled": true
-    // }
+    "grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": true
+    }
   },
   "provider": {
     "local-llm": {
