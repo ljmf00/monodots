@@ -1,0 +1,327 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "atlas": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "explore": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "hephaestus": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "librarian": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "metis": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "momus": {
+      // "fallback_models": [
+      //   "opencode-go/qwen3.7-max",
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   "local-llm/default",
+      //   "local-llm/flash"
+      // ],
+      // "model": "opencode-go/deepseek-v4-pro",
+      // "variant": "max"
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "multimodal-looker": {
+      // "fallback_models": [
+      //   "local-llm/multimodal"
+      // ],
+      // "model": "opencode-go/kimi-k2.6"
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "oracle": {
+      // "fallback_models": [
+      //   "opencode-go/qwen3.7-max",
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   "local-llm/default",
+      //   "local-llm/flash"
+      // ],
+      // "model": "opencode-go/deepseek-v4-pro",
+      // "variant": "max"
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "prometheus": {
+      // "fallback_models": [
+      //   "opencode-go/qwen3.7-max",
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   "local-llm/default",
+      //   "local-llm/flash"
+      // ],
+      // "model": "opencode-go/deepseek-v4-pro",
+      // "variant": "max"
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "sisyphus": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+      // "fallback_models": [
+      //   "opencode-go/qwen3.7-max",
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   "local-llm/default",
+      //   "local-llm/flash"
+      // ],
+      // "model": "opencode-go/deepseek-v4-pro",
+      // "variant": "max"
+    },
+    "sisyphus-junior": {
+      "fallback_models": [
+        {
+          "model": "opencode-go/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        {
+          "model": "opencode/deepseek-v4-flash-free",
+          "variant": "max"
+        },
+        // "local-llm/flash"
+      ],
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+      // "fallback_models": [
+      //   {
+      //     "model": "opencode-go/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   {
+      //     "model": "opencode/deepseek-v4-flash-free",
+      //     "variant": "max"
+      //   },
+      //   "opencode/big-pickle",
+      //   "local-llm/flash"
+      // ],
+      // "model": "opencode-go/deepseek-v4-flash",
+      // "variant": "max"
+    }
+  },
+  "categories": {
+    "artistry": {
+      // "model": "opencode-go/qwen3.5-plus"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "deep": {
+      // "model": "opencode-go/deepseek-v4-pro"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "quick": {
+      // "model": "local-llm/flash"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "ultrabrain": {
+      // "model": "opencode-go/qwen3.7-max"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "unspecified-high": {
+      // "model": "opencode-go/qwen3.7-max"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "unspecified-low": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "visual-engineering": {
+      // "model": "opencode-go/qwen3.7-max"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    },
+    "writing": {
+      // "model": "opencode-go/glm-5.1"
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max"
+    }
+  },
+  "disabled_hooks": [
+    "context-window-monitor",
+    "preemptive-compaction",
+    "anthropic-context-window-limit-recovery"
+  ],
+  "disabled_skills": [
+    "git-master"
+  ],
+  "runtime_fallback": {
+    "cooldown_seconds": 60,
+    "enabled": true,
+    "max_fallback_attempts": 3,
+    "notify_on_fallback": true,
+    "retry_on_errors": [
+      429,
+      500,
+      502,
+      503,
+      504
+    ],
+    "timeout_seconds": 30
+  }
+}
