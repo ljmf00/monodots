@@ -89,22 +89,11 @@ searxng:
         debug: false
 
       preferences:
-        lock:
-          - autocomplete
-          - favicon
-          - doi_resolver
-
-      outgoing:
-        request_timeout: 3.0
-        max_request_timeout: 9.0
-
-        pool_connections: 100
-        pool_maxsize: 10
 
       search:
-        autocomplete: "google"
-        favicon_resolver: "duckduckgo"
-        default_lang: "all"
+        autocomplete: "bing"
+        favicon_resolver: "google"
+        # default_lang: "auto"
 
         formats:
           - html
@@ -221,28 +210,17 @@ searxng-staging:
         debug: false
 
       preferences:
-        lock:
-          - autocomplete
-          - favicon
-          - doi_resolver
-
-      outgoing:
-        request_timeout: 5.0
-        max_request_timeout: 15.0
-
-        pool_connections: 512
-        pool_maxsize: 32
 
       search:
-        autocomplete: "google"
-        favicon_resolver: "duckduckgo"
-        default_lang: "all"
+        autocomplete: "bing"
+        favicon_resolver: "google"
+        # default_lang: "auto"
 
         formats:
           - html
-          # - json
+          - json
+          - rss
           # - csv
-          # - rss
 
       plugins:
         searx.plugins.calculator.SXNGPlugin:
