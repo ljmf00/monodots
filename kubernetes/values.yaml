@@ -136,7 +136,7 @@ searxng:
     BASE_URL: "https://search.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "dc423b7c-af4f-43c7-89f0-525035c44a8c"
+    GENERATION: "7d93959e-d427-4a69-99e1-f595ffc4b570"
 
 rss-bridge:
   global:
@@ -257,7 +257,7 @@ searxng-staging:
     BASE_URL: "https://search.staging.lsferreira.net/"
     AUTOCOMPLETE: "true"
     TZ: "Europe/Lisbon"
-    GENERATION: "613baadb-fa50-4a7e-83e9-0f3ff2850617"
+    GENERATION: "7d93959e-d427-4a69-99e1-f595ffc4b570"
 
 rss-bridge-staging:
   global:
