@@ -59,11 +59,11 @@
     ]
   },
   // "model": "local-llm/default",
-  "model": "opencode-go/deepseek-v4-flash",
+  "model": "opencode-go/mimo-v2.5",
   "agent": {
     "build": {
       "mode": "primary",
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       // "model": "local-llm/flash",
       "tools": {
         "write": true,
@@ -76,6 +76,7 @@
     },
     "plan": {
       "mode": "primary",
+      "model": "opencode-go/deepseek-v4-pro",
       "tools": {
         "write": false,
         "edit": false,
