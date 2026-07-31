@@ -11,9 +11,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "explore": {
@@ -26,9 +30,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "hephaestus": {
@@ -41,9 +49,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "librarian": {
@@ -56,9 +68,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "metis": {
@@ -71,9 +87,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "momus": {
@@ -96,6 +116,7 @@
       // ],
       // "model": "opencode-go/deepseek-v4-pro",
       // "variant": "max"
+
       "fallback_models": [
         {
           "model": "opencode-go/deepseek-v4-flash-free",
@@ -105,9 +126,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "multimodal-looker": {
@@ -124,9 +149,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "oracle": {
@@ -158,9 +187,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "prometheus": {
@@ -192,9 +225,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "sisyphus": {
@@ -207,9 +244,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
       // "fallback_models": [
       //   "opencode-go/qwen3.7-max",
@@ -241,9 +282,13 @@
           "model": "opencode/deepseek-v4-flash-free",
           "variant": "max"
         },
+        {
+          "model": "opencode-go/deepseek-v4-flash",
+          "variant": "max"
+        },
         // "local-llm/flash"
       ],
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
       // "fallback_models": [
       //   {
@@ -264,41 +309,49 @@
   "categories": {
     "artistry": {
       // "model": "opencode-go/qwen3.5-plus"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "deep": {
       // "model": "opencode-go/deepseek-v4-pro"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "quick": {
       // "model": "local-llm/flash"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "ultrabrain": {
       // "model": "opencode-go/qwen3.7-max"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "unspecified-high": {
       // "model": "opencode-go/qwen3.7-max"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "unspecified-low": {
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "visual-engineering": {
       // "model": "opencode-go/qwen3.7-max"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     },
     "writing": {
       // "model": "opencode-go/glm-5.1"
-      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/deepseek-v4-flash",
+      "model": "opencode-go/mimo-v2.5",
       "variant": "max"
     }
   },
