@@ -7,6 +7,11 @@ in with lib;
     allowUnfree = true;
   };
 
+  environment.systemPackages = with pkgs;
+    [
+      chromium-widevine
+    ];
+
   hardware.enableAllFirmware
     = mkGenericDefault config.hardware.enableRedistributableFirmware;
 }

@@ -102,6 +102,7 @@
               networking.hostName = "${hostname}";
 
               nixpkgs.overlays = [
+                (import ./nix/overlays.nix)
                 (import ./nix/hosts/${hostname}/overlays.nix)
               ];
             }
