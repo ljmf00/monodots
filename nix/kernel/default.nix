@@ -6,11 +6,6 @@
             linuxPackages_custom = super.linuxPackagesFor (super.linux_zen.override {
               kernelPatches = [
                   {
-                    name = "behringer-uv1";
-                    patch = ./patches/behringer_uv1.patch;
-                  }
-
-                  {
                     name = "hardening-kernel-mkconfig";
                     patch = null;
 
