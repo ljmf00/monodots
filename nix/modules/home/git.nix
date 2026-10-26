@@ -6,31 +6,19 @@
     pre-commit
   ];
 
+  programs.delta.enable = true;
+  programs.delta.enableGitIntegration = true;
+
   programs.git = {
     enable = true;
-    delta.enable = true;
     lfs.enable = true;
 
     package = pkgs.gitFull;
-
-    userName = "Luís Ferreira";
-    userEmail = "contact@lsferreira.net";
 
     signing = {
       key = "730750D54B7A9F66";
       signByDefault = false;
       format = "openpgp";
-    };
-
-    aliases = {
-      "s" = "status";
-
-      "c" = "commit";
-      "cs" = "commit -s";
-      "ca-sign" = "commit -s --amend --no-edit";
-      "cp" = "cherry-pick";
-
-      "b" = "branch";
     };
 
     ignores = [
@@ -43,7 +31,10 @@
       "*.pdf diff=pdf"
     ];
 
-    extraConfig = {
+    settings = {
+      user.name = "Luís Ferreira";
+      user.email = "contact@lsferreira.net";
+
       core = {
         editor = "nvim --clean";
         whitespace = "trailing-space,space-before-tab";
@@ -51,6 +42,17 @@
       };
 
       format.signoff = true;
+
+      alias = {
+        "s" = "status";
+
+        "c" = "commit";
+        "cs" = "commit -s";
+        "ca-sign" = "commit -s --amend --no-edit";
+        "cp" = "cherry-pick";
+
+        "b" = "branch";
+      };
     };
   };
 

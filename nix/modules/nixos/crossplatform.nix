@@ -2,8 +2,8 @@
   with lib;
 {
   boot.binfmt.emulatedSystems = [
-    "wasm32-wasi"
-    "wasm64-wasi"
+    "wasm32-wasip1"
+    "wasm64-wasip1"
 
     "armv7l-linux"
     "aarch64-linux"
