@@ -24,6 +24,12 @@
 
   nix.settings.system-features = [ "nixos-test" "benchmark" "big-parallel" ];
 
+  nixpkgs.config = {
+    cudaSupport = true;
+    cudaCapabilities = [ "8.9" ];
+    cudaForwardCompat = false;
+  };
+
   boot.supportedFilesystems = [ "btrfs" ];
 
   fileSystems."/" =
