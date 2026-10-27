@@ -2,8 +2,8 @@
 let
   mkGenericDefault = lib.mkOverride 1100;
 
-  ik-llama-server =
-    lib.getExe' inputs.ik-llama.legacyPackages.${pkgs.system}.llamaPackagesCuda.llama-cpp "llama-server";
+  # ik-llama-server =
+  #   lib.getExe' inputs.ik-llama.legacyPackages.${pkgs.system}.llamaPackagesCuda.llama-cpp "llama-server";
 
   llama-server =
     lib.getExe' pkgs.llama-cpp "llama-server";
@@ -259,30 +259,6 @@ in with lib;
         default = {
           proxy = "http://127.0.0.1:8881";
           cmd = ''
-            ${ik-llama-server} \
-              -m ${qwen36Model} \
-              --fit \
-              --fit-margin 3072 \
-              --ctx-size 262144 \
-              --cache-type-k q8_0 \
-              --cache-type-v q8_0 \
-              --cache-type-k-draft q8_0 \
-              --cache-type-v-draft q8_0 \
-              --context-shift auto \
-              --spec-type mtp:n_max=3,p_min=0.75 \
-              --flash-attn on \
-              --threads 16 \
-              --reasoning-budget 32768 \
-              --temp 0.6 \
-              --port 8881 \
-              --jinja \
-              --chat-template-kwargs "{\"preserve_thinking\":true,\"enable_thinking\":true }" \
-              --chat-template-file ${qwen35_36_ChatTemplate}
-          '';
-        };
-        multimodal = {
-          proxy = "http://127.0.0.1:8882";
-          cmd = ''
             ${llama-server} \
               -m ${qwen36Model} \
               --fit on \
@@ -300,37 +276,61 @@ in with lib;
               --repeat-penalty 1.0 \
               --reasoning-budget 32768 \
               --temp 0.6 \
-              --port 8882 \
+              --port 8881 \
               --jinja \
               --chat-template-kwargs "{\"preserve_thinking\":true,\"enable_thinking\":true }" \
               --chat-template-file ${qwen35_36_ChatTemplate}
               --mmproj ${qwen36MmprojFile}
           '';
         };
-        flash = {
-          proxy = "http://127.0.0.1:8883";
-          cmd = ''
-            ${ik-llama-server} \
-              -m ${qwen36FastModel} \
-              --fit \
-              --fit-margin 2048 \
-              --ctx-size 262144 \
-              --cache-type-k q8_0 \
-              --cache-type-v q8_0 \
-              --cache-type-k-draft q8_0 \
-              --cache-type-v-draft q8_0 \
-              --context-shift auto \
-              --spec-type mtp:n_max=3,p_min=0.75 \
-              --flash-attn on \
-              --threads 16 \
-              --reasoning-budget 32768 \
-              --temp 0.6 \
-              --port 8883 \
-              --jinja \
-              --chat-template-kwargs "{\"preserve_thinking\":true,\"enable_thinking\":true }" \
-              --chat-template-file ${qwen35_36_ChatTemplate}
-          '';
-        };
+        # default = {
+        #   proxy = "http://127.0.0.1:8881";
+        #   cmd = ''
+        #     ${ik-llama-server} \
+        #       -m ${qwen36Model} \
+        #       --fit \
+        #       --fit-margin 3072 \
+        #       --ctx-size 262144 \
+        #       --cache-type-k q8_0 \
+        #       --cache-type-v q8_0 \
+        #       --cache-type-k-draft q8_0 \
+        #       --cache-type-v-draft q8_0 \
+        #       --context-shift auto \
+        #       --spec-type mtp:n_max=3,p_min=0.75 \
+        #       --flash-attn on \
+        #       --threads 16 \
+        #       --reasoning-budget 32768 \
+        #       --temp 0.6 \
+        #       --port 8881 \
+        #       --jinja \
+        #       --chat-template-kwargs "{\"preserve_thinking\":true,\"enable_thinking\":true }" \
+        #       --chat-template-file ${qwen35_36_ChatTemplate}
+        #   '';
+        # };
+        # flash = {
+        #   proxy = "http://127.0.0.1:8883";
+        #   cmd = ''
+        #     ${ik-llama-server} \
+        #       -m ${qwen36FastModel} \
+        #       --fit \
+        #       --fit-margin 2048 \
+        #       --ctx-size 262144 \
+        #       --cache-type-k q8_0 \
+        #       --cache-type-v q8_0 \
+        #       --cache-type-k-draft q8_0 \
+        #       --cache-type-v-draft q8_0 \
+        #       --context-shift auto \
+        #       --spec-type mtp:n_max=3,p_min=0.75 \
+        #       --flash-attn on \
+        #       --threads 16 \
+        #       --reasoning-budget 32768 \
+        #       --temp 0.6 \
+        #       --port 8883 \
+        #       --jinja \
+        #       --chat-template-kwargs "{\"preserve_thinking\":true,\"enable_thinking\":true }" \
+        #       --chat-template-file ${qwen35_36_ChatTemplate}
+        #   '';
+        # };
         # coder = {
         #   proxy = "http://127.0.0.1:8883";
         #   cmd = ''
