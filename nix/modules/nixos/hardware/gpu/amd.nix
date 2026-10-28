@@ -7,14 +7,28 @@ in with lib;
     ./.
   ];
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  # boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "amdgpu" ];
 
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
+  systemd.tmpfiles.rules =
+    let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [
+          rocblas
+          hipblas
+          clr
+        ];
+      };
+    in
+    [
+      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    ];
 
-  services.xserver.videoDrivers = mkGenericDefault [ "amdgpu" "radeon" ];
+  nixpkgs.config.rocmSupport = true;
+  hardware.amdgpu.opencl.enable = true;
+
+  services.xserver.videoDrivers = [ "amdgpu" "radeon" ];
 
   hardware.graphics.extraPackages = with pkgs; (
       if pkgs ? rocmPackages.clr
@@ -25,4 +39,7 @@ in with lib;
   environment.variables = {
     ROC_ENABLE_PRE_VEGA = "1";
   };
+
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true; # Replaced 'driSupport32Bit'
 }

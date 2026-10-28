@@ -7,7 +7,7 @@ in with lib;
     ./.
   ];
 
-  boot.initrd.kernelModules = [ "nvidia" ];
+  # boot.initrd.kernelModules = [ "nvidia" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   # boot.kernelParams = [ "nvidia-drm.fbdev=1" "nvidia-drm.modeset=1" ];
@@ -44,7 +44,7 @@ in with lib;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = mkGenericDefault false;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).

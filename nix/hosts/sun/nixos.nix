@@ -4,6 +4,7 @@
   imports = [
     ./../../modules/nixos/hardware/cpu/amd-zen4.nix
     ./../../modules/nixos/hardware/gpu/nvidia.nix
+    ./../../modules/nixos/hardware/gpu/amd.nix
 
     ./../../modules/nixos/hardware/efi/nonesp.nix
 
@@ -52,7 +53,36 @@
     "rtw88" "rtw89"
   ];
 
+  # Sets a high amount of GTT size for LLM usage.
+  boot.extraModprobeConfig = ''
+    # Specified as 4KiB pages: 120 GB GTT.
+    options ttm pages_limit=31457280
+
+    # Specified as 4KiB pages: 60 GB pre-allocated.
+    options ttm page_pool_size=15728640
+
+    # `amdgpu gttsize' is deprecated and should not be used.
+    # options amdgpu gttsize=120000
+  '';
+
   services.ollama = {
     loadModels = [ "qwen3-coder:30b" ];
+  };
+
+  hardware.nvidia = {
+    # PRIME offloading benefits from this when not used
+    powerManagement.finegrained = true;
+
+    prime = {
+      offload = {
+        enable = true;
+
+        # provides `nvidia-offload`
+        enableOffloadCmd = true;
+      };
+
+      nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:12:0:0";
+    };
   };
 }
