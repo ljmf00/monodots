@@ -48,200 +48,200 @@ let
 #     sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
 #   };
 
-  opencodeSandboxed = pkgs.stdenv.mkDerivation {
-    pname = "opencode";
-    version = "sandboxed";
-
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-
-    buildCommand = ''
-      mkdir -p $out/bin
-
-      cat > $out/bin/opencode <<'EOF'
-      #!${pkgs.bash}/bin/bash
-      set -euo pipefail
-
-      REAL="${pkgs.opencode}/bin/opencode"
-
-      # ---------------------------------
-      # host-side persistent roots
-      # ---------------------------------
-
-      mkdir -p "$HOME/.config/opencode"
-      mkdir -p "$HOME/.local/share/opencode"
-      mkdir -p "$HOME/.cache/opencode"
-
-      mkdir -p "$HOME/.opencode-sandbox/.config"
-      mkdir -p "$HOME/.opencode-sandbox/.cache"
-      mkdir -p "$HOME/.opencode-sandbox/.local"
-
-      # ---------------------------------
-      # sandbox HOME (fake, on tmpfs)
-      # ---------------------------------
-      SANDBOX_HOME="/home/''${USER:-user}"
-
-      # capture real home for filtering below
-      REAL_HOME="$HOME"
-
-      ALLOW=()
-      ARGS=()
-      INTERACTIVE=0
-
-      # -----------------------------
-      # parse args
-      # -----------------------------
-      while [[ $# -gt 0 ]]; do
-        case "$1" in
-          --interactive)
-            INTERACTIVE=1
-            ;;
-          --allow)
-            shift
-            [[ $# -gt 0 ]] || exit 1
-            path="$(realpath "$1")"
-
-            ALLOW+=("$path")
-            ;;
-          --)
-            shift
-            ARGS+=("$@")
-            break
-            ;;
-          *)
-            ARGS+=("$1")
-            ;;
-        esac
-        shift
-      done
-
-      # default: cwd (but only if not under real home)
-      if [[ ''${#ALLOW[@]} -eq 0 ]]; then
-        cwd="$(realpath "$(pwd)")"
-        ALLOW+=("$cwd")
-      fi
-
-      # dedupe
-      if [[ ''${#ALLOW[@]} -gt 0 ]]; then
-        mapfile -t ALLOW < <(printf "%s\\n" "''${ALLOW[@]}" | sort -u)
-      fi
-
-      # -----------------------------
-      # PATH sanitization
-      # -----------------------------
-      IFS=: read -ra PATH_ARR <<< "''${PATH:-}"
-      SANITIZED_PATH=()
-
-      SANITIZED_PATH+=("${pkgs.opencode}/bin")
-
-      for p in "''${PATH_ARR[@]}"; do
-        [[ -d "$p" ]] || continue
-
-        SANITIZED_PATH+=("$p")
-      done
-
-      SANITIZED_PATH+=("/run/current-system/sw/bin")
-      SANITIZED_PATH+=("/nix/store")
-
-      PATH_JOINED=$(IFS=:; echo "''${SANITIZED_PATH[*]}")
-
-      # -----------------------------
-      # build bwrap
-      # -----------------------------
-      BWRAP=(
-        ${pkgs.bubblewrap}/bin/bwrap
-
-        --unshare-pid
-        --unshare-uts
-        --unshare-ipc
-        --unshare-cgroup
-        --die-with-parent
-        --clearenv
-
-        --setenv NIX_LD_LIBRARY_PATH "$NIX_LD_LIBRARY_PATH"
-        --setenv NIX_PROFILES "$NIX_PROFILES"
-        --setenv NIX_PATH "$NIX_PATH"
-        --setenv NIX_GSETTINGS_OVERRIDES_DIR "$NIX_GSETTINGS_OVERRIDES_DIR"
-        --setenv NIXPKGS_CONFIG "$NIXPKGS_CONFIG"
-        --setenv NIX_USER_PROFILE_DIR "$NIX_USER_PROFILE_DIR"
-        --setenv NIX_LD "$NIX_LD"
-        --setenv NIX_XDG_DESKTOP_PORTAL_DIR "$NIX_XDG_DESKTOP_PORTAL_DIR"
-        --setenv PATH "$PATH_JOINED"
-        --setenv HOME "$SANDBOX_HOME"
-        --setenv USER "''${USER:-user}"
-        --setenv SHELL "''${SHELL:-/bin/bash}"
-
-        # synthetic /home on tmpfs, no /home/luis from host
-        --tmpfs /home
-        --bind "$HOME/.opencode-sandbox" "$SANDBOX_HOME"
-        --bind "$HOME/.opencode-sandbox/.config" "$SANDBOX_HOME/.config"
-        --bind "$HOME/.opencode-sandbox/.local" "$SANDBOX_HOME/.local"
-        --bind "$HOME/.opencode-sandbox/.cache" "$SANDBOX_HOME/.cache"
-
-        # mount persistent config/data/cache into fake HOME
-        --bind "$HOME/.config/opencode" "$SANDBOX_HOME/.config/opencode"
-        --bind "$HOME/.local/share/opencode" "$SANDBOX_HOME/.local/share/opencode"
-        --bind "$HOME/.cache/opencode" "$SANDBOX_HOME/.cache/opencode"
-
-        # writable /tmp inside sandbox
-        --tmpfs /tmp
-
-        # system runtime
-        --ro-bind /etc/resolv.conf /etc/resolv.conf
-        --ro-bind /etc/ssl /etc/ssl
-        --ro-bind /etc/static/ssl /etc/static/ssl
-        --ro-bind /usr/bin /usr/bin
-        --ro-bind /bin /bin
-        --ro-bind /lib /lib
-        --ro-bind /lib64 /lib64
-
-        --proc /proc
-        --dev /dev
-      );
-
-      # -----------------------------
-      # bind-ro all sanitized PATH dirs (excluding /nix/store and /run/current-system/sw which are already ro-bound)
-      # -----------------------------
-      for p in "''${SANITIZED_PATH[@]}"; do
-        for a in "''${ALLOW[@]:-}"; do
-          if [[ "$p" == "$a"* ]]; then
-            continue 2
-          fi
-        done
-
-        mkdir -p "$(dirname "$p")" || :
-        BWRAP+=(--ro-bind "$p" "$p")
-      done
-
-      # -----------------------------
-      # mount allowlist
-      # -----------------------------
-      for p in "''${ALLOW[@]:-}"; do
-        mkdir -p "$(dirname "$p")" || :
-
-        if [[ -d "$p" ]]; then
-          BWRAP+=(--bind "$p" "$p")
-        elif [[ -f "$p" ]]; then
-          BWRAP+=(--bind "$(dirname "$p")" "$(dirname "$p")")
-        fi
-      done
-
-      # chdir into first allowed path (if any)
-      if [[ ''${#ALLOW[@]} -gt 0 ]]; then
-        BWRAP+=(--chdir "''${ALLOW[0]}")
-      fi
-
-      echo "exec" "$REAL" "''${ARGS[@]}"
-
-      if [[ "$INTERACTIVE" == "1" ]]; then
-        exec "''${BWRAP[@]}" bash
-      else
-        exec "''${BWRAP[@]}" "$REAL" "''${ARGS[@]}"
-      fi
-      EOF
-
-      chmod +x $out/bin/opencode
-    '';
-  };
+#   opencodeSandboxed = pkgs.stdenv.mkDerivation {
+#     pname = "opencode";
+#     version = "sandboxed";
+# 
+#     nativeBuildInputs = [ pkgs.makeWrapper ];
+# 
+#     buildCommand = ''
+#       mkdir -p $out/bin
+# 
+#       cat > $out/bin/opencode <<'EOF'
+#       #!${pkgs.bash}/bin/bash
+#       set -euo pipefail
+# 
+#       REAL="${pkgs.opencode}/bin/opencode"
+# 
+#       # ---------------------------------
+#       # host-side persistent roots
+#       # ---------------------------------
+# 
+#       mkdir -p "$HOME/.config/opencode"
+#       mkdir -p "$HOME/.local/share/opencode"
+#       mkdir -p "$HOME/.cache/opencode"
+# 
+#       mkdir -p "$HOME/.opencode-sandbox/.config"
+#       mkdir -p "$HOME/.opencode-sandbox/.cache"
+#       mkdir -p "$HOME/.opencode-sandbox/.local"
+# 
+#       # ---------------------------------
+#       # sandbox HOME (fake, on tmpfs)
+#       # ---------------------------------
+#       SANDBOX_HOME="/home/''${USER:-user}"
+# 
+#       # capture real home for filtering below
+#       REAL_HOME="$HOME"
+# 
+#       ALLOW=()
+#       ARGS=()
+#       INTERACTIVE=0
+# 
+#       # -----------------------------
+#       # parse args
+#       # -----------------------------
+#       while [[ $# -gt 0 ]]; do
+#         case "$1" in
+#           --interactive)
+#             INTERACTIVE=1
+#             ;;
+#           --allow)
+#             shift
+#             [[ $# -gt 0 ]] || exit 1
+#             path="$(realpath "$1")"
+# 
+#             ALLOW+=("$path")
+#             ;;
+#           --)
+#             shift
+#             ARGS+=("$@")
+#             break
+#             ;;
+#           *)
+#             ARGS+=("$1")
+#             ;;
+#         esac
+#         shift
+#       done
+# 
+#       # default: cwd (but only if not under real home)
+#       if [[ ''${#ALLOW[@]} -eq 0 ]]; then
+#         cwd="$(realpath "$(pwd)")"
+#         ALLOW+=("$cwd")
+#       fi
+# 
+#       # dedupe
+#       if [[ ''${#ALLOW[@]} -gt 0 ]]; then
+#         mapfile -t ALLOW < <(printf "%s\\n" "''${ALLOW[@]}" | sort -u)
+#       fi
+# 
+#       # -----------------------------
+#       # PATH sanitization
+#       # -----------------------------
+#       IFS=: read -ra PATH_ARR <<< "''${PATH:-}"
+#       SANITIZED_PATH=()
+# 
+#       SANITIZED_PATH+=("${pkgs.opencode}/bin")
+# 
+#       for p in "''${PATH_ARR[@]}"; do
+#         [[ -d "$p" ]] || continue
+# 
+#         SANITIZED_PATH+=("$p")
+#       done
+# 
+#       SANITIZED_PATH+=("/run/current-system/sw/bin")
+#       SANITIZED_PATH+=("/nix/store")
+# 
+#       PATH_JOINED=$(IFS=:; echo "''${SANITIZED_PATH[*]}")
+# 
+#       # -----------------------------
+#       # build bwrap
+#       # -----------------------------
+#       BWRAP=(
+#         ${pkgs.bubblewrap}/bin/bwrap
+# 
+#         --unshare-pid
+#         --unshare-uts
+#         --unshare-ipc
+#         --unshare-cgroup
+#         --die-with-parent
+#         --clearenv
+# 
+#         --setenv NIX_LD_LIBRARY_PATH "$NIX_LD_LIBRARY_PATH"
+#         --setenv NIX_PROFILES "$NIX_PROFILES"
+#         --setenv NIX_PATH "$NIX_PATH"
+#         --setenv NIX_GSETTINGS_OVERRIDES_DIR "$NIX_GSETTINGS_OVERRIDES_DIR"
+#         --setenv NIXPKGS_CONFIG "$NIXPKGS_CONFIG"
+#         --setenv NIX_USER_PROFILE_DIR "$NIX_USER_PROFILE_DIR"
+#         --setenv NIX_LD "$NIX_LD"
+#         --setenv NIX_XDG_DESKTOP_PORTAL_DIR "$NIX_XDG_DESKTOP_PORTAL_DIR"
+#         --setenv PATH "$PATH_JOINED"
+#         --setenv HOME "$SANDBOX_HOME"
+#         --setenv USER "''${USER:-user}"
+#         --setenv SHELL "''${SHELL:-/bin/bash}"
+# 
+#         # synthetic /home on tmpfs, no /home/luis from host
+#         --tmpfs /home
+#         --bind "$HOME/.opencode-sandbox" "$SANDBOX_HOME"
+#         --bind "$HOME/.opencode-sandbox/.config" "$SANDBOX_HOME/.config"
+#         --bind "$HOME/.opencode-sandbox/.local" "$SANDBOX_HOME/.local"
+#         --bind "$HOME/.opencode-sandbox/.cache" "$SANDBOX_HOME/.cache"
+# 
+#         # mount persistent config/data/cache into fake HOME
+#         --bind "$HOME/.config/opencode" "$SANDBOX_HOME/.config/opencode"
+#         --bind "$HOME/.local/share/opencode" "$SANDBOX_HOME/.local/share/opencode"
+#         --bind "$HOME/.cache/opencode" "$SANDBOX_HOME/.cache/opencode"
+# 
+#         # writable /tmp inside sandbox
+#         --tmpfs /tmp
+# 
+#         # system runtime
+#         --ro-bind /etc/resolv.conf /etc/resolv.conf
+#         --ro-bind /etc/ssl /etc/ssl
+#         --ro-bind /etc/static/ssl /etc/static/ssl
+#         --ro-bind /usr/bin /usr/bin
+#         --ro-bind /bin /bin
+#         --ro-bind /lib /lib
+#         --ro-bind /lib64 /lib64
+# 
+#         --proc /proc
+#         --dev /dev
+#       );
+# 
+#       # -----------------------------
+#       # bind-ro all sanitized PATH dirs (excluding /nix/store and /run/current-system/sw which are already ro-bound)
+#       # -----------------------------
+#       for p in "''${SANITIZED_PATH[@]}"; do
+#         for a in "''${ALLOW[@]:-}"; do
+#           if [[ "$p" == "$a"* ]]; then
+#             continue 2
+#           fi
+#         done
+# 
+#         mkdir -p "$(dirname "$p")" || :
+#         BWRAP+=(--ro-bind "$p" "$p")
+#       done
+# 
+#       # -----------------------------
+#       # mount allowlist
+#       # -----------------------------
+#       for p in "''${ALLOW[@]:-}"; do
+#         mkdir -p "$(dirname "$p")" || :
+# 
+#         if [[ -d "$p" ]]; then
+#           BWRAP+=(--bind "$p" "$p")
+#         elif [[ -f "$p" ]]; then
+#           BWRAP+=(--bind "$(dirname "$p")" "$(dirname "$p")")
+#         fi
+#       done
+# 
+#       # chdir into first allowed path (if any)
+#       if [[ ''${#ALLOW[@]} -gt 0 ]]; then
+#         BWRAP+=(--chdir "''${ALLOW[0]}")
+#       fi
+# 
+#       echo "exec" "$REAL" "''${ARGS[@]}"
+# 
+#       if [[ "$INTERACTIVE" == "1" ]]; then
+#         exec "''${BWRAP[@]}" bash
+#       else
+#         exec "''${BWRAP[@]}" "$REAL" "''${ARGS[@]}"
+#       fi
+#       EOF
+# 
+#       chmod +x $out/bin/opencode
+#     '';
+#   };
 in with lib;
 {
   services.llama-swap = {
@@ -356,7 +356,7 @@ in with lib;
   };
 
   environment.systemPackages = [
-    opencodeSandboxed
+    # opencodeSandboxed
     pkgs.llama-cpp
   ];
 }
