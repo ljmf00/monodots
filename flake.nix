@@ -17,6 +17,10 @@
 
     # secrets manager
     agenix.url = "github:ryantm/agenix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # community packages
     nur.url = "github:nix-community/nur";
@@ -39,25 +43,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # operating system facilities
+    # Be able to run external binaries
+    nix-alien.url = "github:thiagokokada/nix-alien";
+
+    # installable/runnable system images facilities (generating iso/img files)
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # user configurations
+    # home user-level configurations (non-system wide)
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Be able to run external binaries
-    nix-alien.url = "github:thiagokokada/nix-alien";
-
-    # flake utilities
+    # flake utilities and compatibility layer
     flake-utils.url = "github:numtide/flake-utils";
-
-    # compatibility layer
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -82,12 +84,14 @@
 
       # alias to system-specific packages
 
-      pkgs        = import inputs.nixpkgs { inherit system; };
-      nixosPkgs   = import inputs.nixpkgs-nixos { inherit system; };
-      nix24Pkgs = import inputs.nixpkgs2405 { inherit system; };
-      stablePkgs  = import inputs.nixpkgs-stable { inherit system; };
-      nextPkgs    = import inputs.nixpkgs-staging-next { inherit system; };
-      nativePkgs  = import inputs.nixpkgs {
+      nixosPkgs    = import inputs.nixpkgs-nixos { inherit system; };
+      pkgs         = import inputs.nixpkgs { inherit system; };
+      unstablePkgs = pkgs;
+
+      nix24Pkgs    = import inputs.nixpkgs2405 { inherit system; };
+      stablePkgs   = import inputs.nixpkgs-stable { inherit system; };
+      nextPkgs     = import inputs.nixpkgs-staging-next { inherit system; };
+      nativePkgs   = import inputs.nixpkgs {
         overlays = [
           (self: super: {
             stdenv = super.impureUseNativeOptimizations super.stdenv;
@@ -100,7 +104,7 @@
       mkSystem = pkgs: system: hostname: username:
         pkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs nix24Pkgs stablePkgs nextPkgs nativePkgs; };
+          specialArgs = { inherit inputs unstablePkgs nixosPkgs nix24Pkgs stablePkgs nextPkgs nativePkgs; };
 
           modules = [
             {
@@ -154,26 +158,6 @@
 
       nixosConfigurations.thinker = mkSystem inputs.nixpkgs-nixos "x86_64-linux" "thinker" "luis";
       nixosConfigurations.sun = mkSystem inputs.nixpkgs-nixos "x86_64-linux" "sun" "luis";
-
-      robotnixConfigurations.oneplus11 = inputs.robotnix.lib.robotnixSystem ({ config, pkgs, ... }: {
-        # These two are required options
-        device = "salami";
-        flavor = "lineageos";
-
-        buildDateTime = 1751301288;
-
-        # Build with ccache
-        ccache.enable = true;
-
-        apps.fdroid.enable = true;
-        apps.seedvault.enable = true;
-        microg.enable = true;
-
-        apps.vanadium.enable = true;
-        webview.vanadium.enable = true;
-        webview.vanadium.availableByDefault = true;
-        webview.vanadium.isFallback = true;
-      });
 
       homeConfigurations."${defaultUsername}" = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
