@@ -359,6 +359,11 @@ in with lib;
     enable = true;
     container.enable = true;
     addToSystemPackages = true;
+    settings.webapp = {
+      enabled = true;
+      host = "127.0.0.1";
+      port = 9120;
+    };
   };
 
   environment.systemPackages = [
