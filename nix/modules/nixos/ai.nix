@@ -355,6 +355,12 @@ in with lib;
     };
   };
 
+  services.hermes-agent = {
+    enable = true;
+    container.enable = true;
+    addToSystemPackages = true;
+  };
+
   environment.systemPackages = [
     # opencodeSandboxed
     pkgs.llama-cpp

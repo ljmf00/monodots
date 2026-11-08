@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # operating system facilities
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -111,8 +116,9 @@
             ./nix/hosts/${hostname}
             ./nix/hosts/${hostname}/nixos.nix
 
-
+            inputs.hermes-agent.nixosModules.default
             inputs.home-manager.nixosModules.home-manager
+
             {
               home-manager = {
                 useUserPackages = true;
